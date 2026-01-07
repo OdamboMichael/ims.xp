@@ -1,0 +1,439 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div>
+            <h1 class="h2">{{ farm.name }}</h1>
+            <p class="text-muted">{{ farm.get_production_type_display }} • {{ farm.county }}, {{ farm.constituency }}</p>
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:farm_edit' farm.id %}" class="btn btn-warning me-2">
+                <i class="fas fa-edit me-2"></i>Edit
+            </a>
+            <a href="{% url 'dashboard:farms_list' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Farms
+            </a>
+        </div>
+    </div>
+
+    <!-- Farm Info Cards -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+                            <h2 class="card-title">${{ total_revenue|floatformat:2 }}</h2>
+                            <p class="card-text">From all production</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Costs</h6>
+                            <h2 class="card-title">${{ total_input_cost|add:total_labor_cost|floatformat:2 }}</h2>
+                            <p class="card-text">Inputs + Labor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Gross Margin</h6>
+                            <h2 class="card-title">{{ gross_margin|floatformat:1 }}%</h2>
+                            <p class="card-text">Profitability indicator</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Active Labor</h6>
+                            <h2 class="card-title">{{ labor_data.count }}</h2>
+                            <p class="card-text">Employees</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Farm Information</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Farmer:</th>
+                            <td><a href="{% url 'dashboard:farmer_detail' farm.farmer.id %}">{{ farm.farmer.name }}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Cluster:</th>
+                            <td>
+                                {% if farm.cluster %}
+                                <a href="{% url 'dashboard:cluster_detail' farm.cluster.id %}">{{ farm.cluster.name }}</a>
+                                {% else %}
+                                <span class="text-muted">No cluster</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Size:</th>
+                            <td>{{ farm.size }} hectares</td>
+                        </tr>
+                        <tr>
+                            <th>Ownership:</th>
+                            <td>{{ farm.get_ownership_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>Location:</th>
+                            <td>{{ farm.ward }}, {{ farm.constituency }}, {{ farm.county }}</td>
+                        </tr>
+                        <tr>
+                            <th>Soil Type:</th>
+                            <td>{{ farm.soil_type|default:"Not specified" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Irrigation:</th>
+                            <td>{{ farm.irrigation_type|default:"Not specified" }}</td>
+                        </tr>
+                        {% if farm.gps_coordinates %}
+                        <tr>
+                            <th>GPS:</th>
+                            <td><small>{{ farm.gps_coordinates }}</small></td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4" id="farmTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="production-tab" data-bs-toggle="tab" data-bs-target="#production" type="button">
+                <i class="fas fa-chart-line me-2"></i>Production Data
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="yield-tab" data-bs-toggle="tab" data-bs-target="#yield" type="button">
+                <i class="fas fa-seedling me-2"></i>Yield Data
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="labor-tab" data-bs-toggle="tab" data-bs-target="#labor" type="button">
+                <i class="fas fa-users me-2"></i>Labor
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="inputs-tab" data-bs-toggle="tab" data-bs-target="#inputs" type="button">
+                <i class="fas fa-tools me-2"></i>Farm Inputs
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="inventory-tab" data-bs-toggle="tab" data-bs-target="#inventory" type="button">
+                <i class="fas fa-warehouse me-2"></i>Inventory
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="farmTabsContent">
+        <!-- Production Tab -->
+        <div class="tab-pane fade show active" id="production" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Production Records</h5>
+                    <a href="{% url 'dashboard:sales_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Production
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit</th>
+                                    <th>Price/Unit</th>
+                                    <th>Total Revenue</th>
+                                    <th>Date</th>
+                                    <th>Quality</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for production in production_data %}
+                                <tr>
+                                    <td>{{ production.product_name }}</td>
+                                    <td>{{ production.quantity }}</td>
+                                    <td>{{ production.unit }}</td>
+                                    <td>${{ production.price_per_unit|floatformat:2 }}</td>
+                                    <td>${{ production.total_revenue|floatformat:2 }}</td>
+                                    <td>{{ production.date_recorded|date:"M d, Y" }}</td>
+                                    <td>
+                                        {% if production.quality_grade %}
+                                        <span class="badge bg-info">{{ production.quality_grade }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">
+                                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                                        <h5>No production data</h5>
+                                        <p class="text-muted">Add production records to track farm output</p>
+                                        <a href="{% url 'dashboard:sales_create' %}" class="btn btn-primary">Add Production</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yield Tab -->
+        <div class="tab-pane fade" id="yield" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Yield Records</h5>
+                    <a href="{% url 'dashboard:yield_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Yield
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Crop/Livestock</th>
+                                    <th>Area/Count</th>
+                                    <th>Yield/Unit</th>
+                                    <th>Total Yield</th>
+                                    <th>Quality</th>
+                                    <th>Date</th>
+                                    <th>Season</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for yield in yield_data %}
+                                <tr>
+                                    <td>{{ yield.crop_livestock }}</td>
+                                    <td>{{ yield.area_count }}</td>
+                                    <td>{{ yield.yield_per_unit }}</td>
+                                    <td>{{ yield.total_yield }}</td>
+                                    <td>
+                                        <span class="badge bg-info">{{ yield.quality_grade }}</span>
+                                    </td>
+                                    <td>{{ yield.date_recorded|date:"M d, Y" }}</td>
+                                    <td>{{ yield.season|default:"-" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">
+                                        <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
+                                        <h5>No yield data</h5>
+                                        <p class="text-muted">Add yield records to track crop/livestock production</p>
+                                        <a href="{% url 'dashboard:yield_create' %}" class="btn btn-primary">Add Yield</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Labor Tab -->
+        <div class="tab-pane fade" id="labor" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Labor Records</h5>
+                    <a href="{% url 'dashboard:labor_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Labor
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Category</th>
+                                    <th>Role</th>
+                                    <th>Hourly Rate</th>
+                                    <th>Hours/Week</th>
+                                    <th>Status</th>
+                                    <th>Date Hired</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for labor in labor_data %}
+                                <tr>
+                                    <td>{{ labor.employee_name }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ labor.get_category_display }}</span>
+                                    </td>
+                                    <td>{{ labor.get_role_display }}</td>
+                                    <td>${{ labor.hourly_rate|floatformat:2 }}</td>
+                                    <td>{{ labor.hours_per_week }}</td>
+                                    <td>
+                                        {% if labor.status == 'active' %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{{ labor.status }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ labor.date_hired|date:"M d, Y" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">
+                                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                                        <h5>No labor records</h5>
+                                        <p class="text-muted">Add labor records to track farm employees</p>
+                                        <a href="{% url 'dashboard:labor_create' %}" class="btn btn-primary">Add Labor</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inputs Tab -->
+        <div class="tab-pane fade" id="inputs" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Farm Inputs</h5>
+                    <a href="{% url 'dashboard:inputs_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Input
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Item/Service</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Cost</th>
+                                    <th>Total Cost</th>
+                                    <th>Supplier</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for input in inputs_data %}
+                                <tr>
+                                    <td>{{ input.date|date:"M d, Y" }}</td>
+                                    <td>
+                                        <span class="badge bg-info">{{ input.get_category_display }}</span>
+                                    </td>
+                                    <td>{{ input.item_service }}</td>
+                                    <td>{{ input.quantity }} {{ input.unit }}</td>
+                                    <td>${{ input.unit_cost|floatformat:2 }}</td>
+                                    <td>${{ input.total_cost|floatformat:2 }}</td>
+                                    <td>{{ input.supplier|default:"-" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">
+                                        <i class="fas fa-tools fa-3x text-muted mb-3"></i>
+                                        <h5>No input records</h5>
+                                        <p class="text-muted">Add input records to track farm expenses</p>
+                                        <a href="{% url 'dashboard:inputs_create' %}" class="btn btn-primary">Add Input</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div class="tab-pane fade" id="inventory" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Inventory Items</h5>
+                    <a href="{% url 'dashboard:inventory_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Item
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Purchase Date</th>
+                                    <th>Cost</th>
+                                    <th>Current Value</th>
+                                    <th>Status</th>
+                                    <th>Last Maintenance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in inventory_items %}
+                                <tr>
+                                    <td>{{ item.item_name }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ item.get_category_display }}</span>
+                                    </td>
+                                    <td>{{ item.purchase_date|date:"M d, Y" }}</td>
+                                    <td>${{ item.cost|floatformat:2 }}</td>
+                                    <td>
+                                        {% if item.current_value %}
+                                        ${{ item.current_value|floatformat:2 }}
+                                        {% else %}
+                                        <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.status == 'operational' %}
+                                        <span class="badge bg-success">Operational</span>
+                                        {% elif item.status == 'maintenance' %}
+                                        <span class="badge bg-warning">Maintenance</span>
+                                        {% elif item.status == 'repair' %}
+                                        <span class="badge bg-danger">Repair</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{{ item.status }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.last_maintenance|date:"M d, Y"|default:"-" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">
+                                        <i class="fas fa-warehouse fa-3x text-muted mb-3"></i>
+                                        <h5>No inventory items</h5>
+                                        <p class="text-muted">Add inventory items to track farm assets</p>
+                                        <a href="{% url 'dashboard:inventory_create' %}" class="btn btn-primary">Add Item</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

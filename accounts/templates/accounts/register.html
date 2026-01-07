@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10">
+            <div class="card border-0 shadow-lg">
+                <div class="row g-0">
+                    <!-- Left Side - Info -->
+                    <div class="col-lg-5 d-none d-lg-block bg-primary text-white">
+                        <div class="p-5 h-100 d-flex flex-column justify-content-center">
+                            <div class="text-center mb-5">
+                                <h2 class="fw-bold mb-3">Xpert Farmer IMS</h2>
+                                <p class="lead">Create your institutional account and unlock powerful farm management insights.</p>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5 class="mb-4">Why join us?</h5>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-database fa-lg me-3"></i>
+                                    <span>Comprehensive farm data management</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-chart-bar fa-lg me-3"></i>
+                                    <span>Advanced analytics and reporting</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-users fa-lg me-3"></i>
+                                    <span>Cluster and farmer management</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-mobile-alt fa-lg me-3"></i>
+                                    <span>Responsive and mobile-friendly</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-shield-alt fa-lg me-3"></i>
+                                    <span>Secure and reliable platform</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 pt-4 border-top border-white-50">
+                                <p class="small mb-0">
+                                    Already have an account? 
+                                    <a href="{% url 'accounts:login' %}" class="text-white text-decoration-underline">
+                                        Log in here
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Registration Form -->
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center mb-4">
+                                <h3 class="fw-bold text-primary">Create Institutional Account</h3>
+                                <p class="text-muted">Fill in your institution details to get started</p>
+                            </div>
+
+                            {% if messages %}
+                            <div class="mb-4">
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <form method="post" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                
+                                <!-- Institution Information -->
+                                <div class="mb-4">
+                                    <h6 class="text-primary mb-3">Institution Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.institution_type|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.name|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.registration_number|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.clusters_count|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Location Details -->
+                                <div class="mb-4">
+                                    <h6 class="text-primary mb-3">Location Details</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.country|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.constituency|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.ward|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.phone|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    {{ form.street|as_crispy_field }}
+                                </div>
+
+                                <!-- Account Setup -->
+                                <div class="mb-4">
+                                    <h6 class="text-primary mb-3">Account Setup</h6>
+                                    {{ form.email|as_crispy_field }}
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.password|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.confirm_password|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.pin|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            {{ form.confirm_pin|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Terms and Conditions -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        {{ form.agree_terms }}
+                                        <label class="form-check-label" for="{{ form.agree_terms.id_for_label }}">
+                                            I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                    {% if form.agree_terms.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.agree_terms.errors }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                                    <i class="fas fa-user-plus me-2"></i>Create Account
+                                </button>
+                            </form>
+
+                            <div class="text-center mt-4">
+                                <p class="text-muted mb-0">
+                                    Already have an account? 
+                                    <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold text-primary">
+                                        Log in here
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms and Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Acceptance of Terms</h6>
+                <p>By accessing and using Xpert Farmer IMS, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                
+                <h6>2. Use License</h6>
+                <p>Permission is granted to temporarily use Xpert Farmer IMS for agricultural data management purposes.</p>
+                
+                <h6>3. Account Responsibilities</h6>
+                <p>You are responsible for maintaining the confidentiality of your account and PIN, and for all activities that occur under your account.</p>
+                
+                <h6>4. Data Privacy</h6>
+                <p>We are committed to protecting your data and privacy in accordance with our privacy policy.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Policy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Privacy Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Data Collection</h6>
+                <p>We collect necessary information to provide agricultural management services, including institution details, farm data, and contact information.</p>
+                
+                <h6>Data Usage</h6>
+                <p>Your data is used to provide insights, generate reports, and improve agricultural management practices.</p>
+                
+                <h6>Data Protection</h6>
+                <p>We implement security measures to protect your data from unauthorized access or disclosure.</p>
+                
+                <h6>Data Sharing</h6>
+                <p>We do not sell your data. Aggregated, anonymized data may be used for research and improvement purposes.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #244328 0%, #3e6a4a 100%);
+}
+
+.card {
+    border-radius: 15px;
+}
+</style>
+
+<script>
+// Real-time email availability check
+document.getElementById('id_email').addEventListener('blur', function() {
+    const email = this.value;
+    if (email) {
+        fetch('/accounts/api/check-email/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({email: email})
+        })
+        .then(response => response.json())
+        .then(data => {
+            const feedback = document.createElement('div');
+            feedback.className = data.available ? 'valid-feedback' : 'invalid-feedback';
+            feedback.textContent = data.available ? 'Email is available' : 'Email is already registered';
+            
+            // Remove existing feedback
+            const existingFeedback = this.parentNode.querySelector('.valid-feedback, .invalid-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+            
+            this.parentNode.appendChild(feedback);
+            this.classList.toggle('is-valid', data.available);
+            this.classList.toggle('is-invalid', !data.available);
+        });
+    }
+});
+</script>
+{% endblock %}

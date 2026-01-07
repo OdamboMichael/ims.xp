@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <!-- Left Side - Brand/Info -->
+        <div class="col-lg-6 d-none d-lg-block bg-primary text-white p-5">
+            <div class="d-flex flex-column justify-content-center h-100">
+                <div class="mb-5">
+                    <h1 class="display-4 fw-bold mb-3">Xpert Farmer IMS</h1>
+                    <p class="lead">Reset your PIN securely and get back to managing your farms.</p>
+                </div>
+                
+                <div class="mt-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-key fa-2x me-3"></i>
+                        <div>
+                            <h5>Secure PIN Reset</h5>
+                            <p class="mb-0">Create a new secure PIN for your account</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-lock fa-2x me-3"></i>
+                        <div>
+                            <h5>OTP Verified</h5>
+                            <p class="mb-0">Your identity is verified through OTP</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-check-circle fa-2x me-3"></i>
+                        <div>
+                            <h5>Quick Access</h5>
+                            <p class="mb-0">Get back to your dashboard instantly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Reset PIN Form -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="w-100" style="max-width: 400px;">
+                <div class="text-center mb-5">
+                    <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS" height="60" class="d-lg-none mb-3">
+                    <h2 class="fw-bold text-primary">Reset your PIN</h2>
+                    <p class="text-muted">Please enter the OTP sent to your email and set a new PIN.</p>
+                </div>
+
+                {% if messages %}
+                <div class="mb-4">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        {{ form.otp|as_crispy_field }}
+                    </div>
+
+                    <div class="mb-4">
+                        {{ form.new_pin|as_crispy_field }}
+                    </div>
+
+                    <div class="mb-4">
+                        {{ form.confirm_pin|as_crispy_field }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mb-4">
+                        <i class="fas fa-redo me-2"></i>Reset PIN
+                    </button>
+
+                    <div class="text-center">
+                        <p class="text-muted">
+                            Remember your PIN? 
+                            <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold text-primary">
+                                Back to Login
+                            </a>
+                        </p>
+                    </div>
+                </form>
+
+                <div class="mt-5 pt-4 border-top">
+                    <div class="text-center">
+                        <small class="text-muted">
+                            &copy; 2024 Xpert Farmer IMS. All rights reserved.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #244328 0%, #3e6a4a 100%);
+}
+
+/* PIN input styling */
+#id_new_pin, #id_confirm_pin {
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+</style>
+
+<script>
+// Auto-tab between OTP digits (if OTP was multiple inputs)
+document.addEventListener('DOMContentLoaded', function() {
+    const otpInputs = document.querySelectorAll('.otp-digit');
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+            if (this.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+        });
+        
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+});
+
+// PIN strength indicator
+document.getElementById('id_new_pin').addEventListener('input', function() {
+    const pin = this.value;
+    const strengthIndicator = document.getElementById('pin-strength') || createStrengthIndicator();
+    
+    let strength = 0;
+    let message = '';
+    let color = 'danger';
+    
+    if (pin.length >= 4) strength++;
+    if (pin.length >= 5) strength++;
+    if (pin.length >= 6) strength++;
+    
+    // Check for repeated numbers
+    if (pin.length >= 4 && !/(\d)\1{2,}/.test(pin)) strength++;
+    
+    // Check for sequential numbers
+    if (pin.length >= 4 && !/(012|123|234|345|456|567|678|789)/.test(pin)) strength++;
+    
+    switch(strength) {
+        case 0:
+        case 1:
+            message = 'Very Weak';
+            color = 'danger';
+            break;
+        case 2:
+            message = 'Weak';
+            color = 'warning';
+            break;
+        case 3:
+            message = 'Fair';
+            color = 'info';
+            break;
+        case 4:
+            message = 'Strong';
+            color = 'success';
+            break;
+        case 5:
+            message = 'Very Strong';
+            color = 'success';
+            break;
+    }
+    
+    strengthIndicator.innerHTML = `
+        <div class="progress mb-2" style="height: 5px;">
+            <div class="progress-bar bg-${color}" style="width: ${(strength/5)*100}%"></div>
+        </div>
+        <small class="text-${color}">PIN Strength: ${message}</small>
+    `;
+});
+
+function createStrengthIndicator() {
+    const indicator = document.createElement('div');
+    indicator.id = 'pin-strength';
+    indicator.className = 'mt-2';
+    document.getElementById('id_new_pin').parentNode.appendChild(indicator);
+    return indicator;
+}
+</script>
+{% endblock %}

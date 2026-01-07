@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sales & Market Insights - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:main' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:operational' %}">
+                            <i class="fas fa-chart-line me-2"></i>Operational Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:profitability' %}">
+                            <i class="fas fa-money-bill-wave me-2"></i>Profitability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:productivity' %}">
+                            <i class="fas fa-industry me-2"></i>Productivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'reports:sales_insights' %}">
+                            <i class="fas fa-chart-bar me-2"></i>Sales Insights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:vine_reports' %}">
+                            <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Sales & Market Insights</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2" onclick="printReport()">
+                        <i class="fas fa-print me-1"></i>Print
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="exportReport('sales_insights')">
+                        <i class="fas fa-download me-1"></i>Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Market Overview -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Market Share</h5>
+                            <h1 class="display-6">22%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+2% vs last quarter</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 22%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Customer Retention</h5>
+                            <h1 class="display-6">88%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+3% vs last year</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sales Growth</h5>
+                            <h1 class="display-6">15%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+5% vs target</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Charts -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Price Fluctuation Trends</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="priceTrendChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Sales by Channel</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="salesChannelChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Performance Table -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Sales Performance by Product</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty Sold</th>
+                                    <th>Revenue</th>
+                                    <th>Avg Price</th>
+                                    <th>Market Price</th>
+                                    <th>Price Variance</th>
+                                    <th>Growth</th>
+                                    <th>Market Position</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Corn</strong></td>
+                                    <td>36,000 bushels</td>
+                                    <td>$153,000</td>
+                                    <td>$4.25</td>
+                                    <td>$4.30</td>
+                                    <td><span class="badge bg-warning">-1.2%</span></td>
+                                    <td><span class="badge bg-success">+12%</span></td>
+                                    <td><span class="badge bg-success">Leader</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Milk</strong></td>
+                                    <td>10,000 gallons</td>
+                                    <td>$35,000</td>
+                                    <td>$3.50</td>
+                                    <td>$3.45</td>
+                                    <td><span class="badge bg-success">+1.4%</span></td>
+                                    <td><span class="badge bg-success">+8%</span></td>
+                                    <td><span class="badge bg-warning">Competitive</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Beef</strong></td>
+                                    <td>5,000 lbs</td>
+                                    <td>$25,000</td>
+                                    <td>$5.00</td>
+                                    <td>$5.10</td>
+                                    <td><span class="badge bg-warning">-2.0%</span></td>
+                                    <td><span class="badge bg-success">+5%</span></td>
+                                    <td><span class="badge bg-warning">Competitive</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Eggs</strong></td>
+                                    <td>12,000 dozen</td>
+                                    <td>$30,000</td>
+                                    <td>$2.50</td>
+                                    <td>$2.55</td>
+                                    <td><span class="badge bg-warning">-2.0%</span></td>
+                                    <td><span class="badge bg-success">+10%</span></td>
+                                    <td><span class="badge bg-success">Leader</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wool</strong></td>
+                                    <td>1,000 lbs</td>
+                                    <td>$10,000</td>
+                                    <td>$10.00</td>
+                                    <td>$9.80</td>
+                                    <td><span class="badge bg-success">+2.0%</span></td>
+                                    <td><span class="badge bg-danger">-3%</span></td>
+                                    <td><span class="badge bg-danger">Challenger</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Analysis -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Seasonal Demand Patterns</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="seasonalDemandChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Customer Segmentation</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="customerSegmentationChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Insights -->
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5 class="mb-0 text-white">
+                        <i class="fas fa-chart-bar me-2"></i>Market Insights & Forecast
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-success">
+                                <h6><i class="fas fa-arrow-up me-2"></i>Positive Indicators</h6>
+                                <ul>
+                                    <li><strong>Corn demand increasing:</strong> Projected price increase of 8% next quarter based on current market trends</li>
+                                    <li><strong>Organic segment growth:</strong> 15% annual growth in organic produce demand</li>
+                                    <li><strong>Export opportunities:</strong> New markets opening in Asia for dairy products</li>
+                                    <li><strong>Customer loyalty:</strong> Retention rate improved to 88%</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Market Challenges</h6>
+                                <ul>
+                                    <li><strong>Price pressure:</strong> Some products selling below market average</li>
+                                    <li><strong>Competition:</strong> New entrants in organic dairy segment</li>
+                                    <li><strong>Supply chain costs:</strong> Transportation costs increased by 12%</li>
+                                    <li><strong>Wool demand declining:</strong> Market shifting to synthetic alternatives</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h6>Strategic Recommendations:</h6>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-primary mb-3">
+                                    <div class="card-header bg-primary text-white">Pricing Strategy</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Increase corn prices by 5-8%</li>
+                                            <li>Bundle dairy products</li>
+                                            <li>Offer volume discounts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success mb-3">
+                                    <div class="card-header bg-success text-white">Market Expansion</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Target organic food retailers</li>
+                                            <li>Explore export opportunities</li>
+                                            <li>Develop value-added products</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-info mb-3">
+                                    <div class="card-header bg-info text-white">Product Strategy</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Focus on high-margin crops</li>
+                                            <li>Reduce wool production</li>
+                                            <li>Introduce new dairy products</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Key Forecast</h6>
+                        <p><strong>Revenue Projection:</strong> Projected to increase by 8% next quarter based on current market trends for corn and dairy products. Organic segment expected to grow by 15% annually.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeSalesInsightsCharts();
+    });
+
+    function printReport() {
+        window.print();
+    }
+
+    function exportReport(type) {
+        alert(`Exporting ${type} report...`);
+        // Add export logic here
+    }
+</script>
+{% endblock %}

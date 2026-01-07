@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <!-- Left Side - Brand/Info -->
+        <div class="col-lg-6 d-none d-lg-block bg-primary text-white p-5">
+            <div class="d-flex flex-column justify-content-center h-100">
+                <div class="mb-5">
+                    <h1 class="display-4 fw-bold mb-3">Xpert Farmer IMS</h1>
+                    <p class="lead">Your gateway to comprehensive agricultural management.</p>
+                </div>
+                
+                <div class="mt-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-rocket fa-2x me-3"></i>
+                        <div>
+                            <h5>Ready to Explore</h5>
+                            <p class="mb-0">Discover all the features of our platform</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-chart-line fa-2x me-3"></i>
+                        <div>
+                            <h5>Data Insights</h5>
+                            <p class="mb-0">Gain valuable insights from your farm data</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-hands-helping fa-2x me-3"></i>
+                        <div>
+                            <h5>24/7 Support</h5>
+                            <p class="mb-0">We're here to help you succeed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Success Message -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="w-100" style="max-width: 500px;">
+                <div class="text-center">
+                    <div class="mb-5">
+                        <div class="success-icon mb-4">
+                            <div class="rounded-circle bg-success d-inline-flex align-items-center justify-content-center" 
+                                 style="width: 100px; height: 100px;">
+                                <i class="fas fa-check fa-3x text-white"></i>
+                            </div>
+                        </div>
+                        
+                        <h2 class="fw-bold text-success mb-3">Account Created Successfully!</h2>
+                        <p class="lead text-muted mb-4">
+                            Welcome to Xpert Farmer IMS! Your account has been successfully created. 
+                            Let's get started and explore your dashboard.
+                        </p>
+                        
+                        <div class="alert alert-info mb-4">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Redirecting to Dashboard...</strong>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-users text-primary fa-2x mb-3"></i>
+                                    <h6>Manage Clusters</h6>
+                                    <p class="small text-muted mb-0">Organize farmer groups</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-tractor text-success fa-2x mb-3"></i>
+                                    <h6>Track Farms</h6>
+                                    <p class="small text-muted mb-0">Monitor farm activities</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-chart-bar text-warning fa-2x mb-3"></i>
+                                    <h6>Generate Reports</h6>
+                                    <p class="small text-muted mb-0">Get actionable insights</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'dashboard:home' %}" class="btn btn-primary btn-lg py-3">
+                            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard Now
+                        </a>
+                        <a href="{% url 'accounts:profile' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-user-cog me-2"></i>Complete Your Profile
+                        </a>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-muted small">
+                            Need help getting started? 
+                            <a href="#" class="text-decoration-none">Check out our guide</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #244328 0%, #3e6a4a 100%);
+}
+
+.success-icon {
+    animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+.progress-bar-animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% { background-position: 1rem 0; }
+    100% { background-position: 0 0; }
+}
+</style>
+
+<script>
+// Auto-redirect after 5 seconds
+setTimeout(function() {
+    window.location.href = "{% url 'dashboard:home' %}";
+}, 5000);
+
+// Optional: Add a countdown timer
+let seconds = 5;
+const timerElement = document.createElement('div');
+timerElement.className = 'text-center mt-2';
+document.querySelector('.alert-info').appendChild(timerElement);
+
+const timer = setInterval(function() {
+    seconds--;
+    timerElement.innerHTML = `<small>Redirecting in ${seconds} seconds...</small>`;
+    if (seconds <= 0) {
+        clearInterval(timer);
+    }
+}, 1000);
+</script>
+{% endblock %}

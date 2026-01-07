@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reports Dashboard - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'reports:main' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:operational' %}">
+                            <i class="fas fa-chart-line me-2"></i>Operational Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:profitability' %}">
+                            <i class="fas fa-money-bill-wave me-2"></i>Profitability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:productivity' %}">
+                            <i class="fas fa-industry me-2"></i>Productivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:sales_insights' %}">
+                            <i class="fas fa-chart-bar me-2"></i>Sales Insights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:vine_reports' %}">
+                            <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Report Filters -->
+                <div class="mt-4">
+                    <h6 class="sidebar-heading px-3 mb-2">Report Filters</h6>
+                    <div class="px-3">
+                        <div class="mb-3">
+                            <label class="form-label small">Date Range</label>
+                            <select class="form-select form-select-sm">
+                                <option selected>Last 30 Days</option>
+                                <option>Last Quarter</option>
+                                <option>Last Year</option>
+                                <option>Custom Range</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small">Farm/Cluster</label>
+                            <select class="form-select form-select-sm">
+                                <option selected>All Farms</option>
+                                <option>Green Valley Growers</option>
+                                <option>Sunrise Farmers Coop</option>
+                                <option>Mountain Ridge Organics</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-sm btn-primary w-100">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Reports Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="fas fa-print me-1"></i>Print
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-download me-1"></i>Export All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Gross Margin</h6>
+                                    <h2 class="card-title">45%</h2>
+                                    <span class="badge bg-success">+3%</span>
+                                </div>
+                                <div class="text-primary">
+                                    <i class="fas fa-chart-pie fa-2x"></i>
+                                </div>
+                            </div>
+                            <p class="card-text small mt-2">Target: 42%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Yield per Acre</h6>
+                                    <h2 class="card-title">8.2 tons</h2>
+                                    <span class="badge bg-success">+0.4</span>
+                                </div>
+                                <div class="text-success">
+                                    <i class="fas fa-seedling fa-2x"></i>
+                                </div>
+                            </div>
+                            <p class="card-text small mt-2">Target: 7.8 tons</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Labor Efficiency</h6>
+                                    <h2 class="card-title">93%</h2>
+                                    <span class="badge bg-warning">-2%</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                            </div>
+                            <p class="card-text small mt-2">Target: 95%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Inventory Turnover</h6>
+                                    <h2 class="card-title">5.8</h2>
+                                    <span class="badge bg-success">+0.3</span>
+                                </div>
+                                <div class="text-info">
+                                    <i class="fas fa-boxes fa-2x"></i>
+                                </div>
+                            </div>
+                            <p class="card-text small mt-2">Target: 5.5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Cards Grid -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-line me-2"></i>Operational Health
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Monitor key operational indicators and system performance metrics.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-success me-2">Revenue: +12%</span>
+                                <span class="badge bg-warning">Costs: +8%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'reports:operational' %}" class="btn btn-outline-primary btn-sm">
+                                View Report <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-money-bill-wave me-2"></i>Profitability Insights
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Analyze profit margins, cost structures, and financial performance.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary me-2">Margin: 45%</span>
+                                <span class="badge bg-success">ROI: 8%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'reports:profitability' %}" class="btn btn-outline-success btn-sm">
+                                View Report <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-industry me-2"></i>Productivity & Efficiency
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Track production efficiency, resource utilization, and output quality.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-success me-2">Yield: +8%</span>
+                                <span class="badge bg-warning">Labor: 93%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'reports:productivity' %}" class="btn btn-outline-info btn-sm">
+                                View Report <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning">
+                            <h5 class="mb-0 text-white">
+                                <i class="fas fa-chart-bar me-2"></i>Sales & Market Insights
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Market trends, sales performance, and pricing analysis across products.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-success me-2">Sales: +15%</span>
+                                <span class="badge bg-primary">Market Share: 22%</span>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted">Top Product: Corn ($153,000 revenue)</small>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'reports:sales_insights' %}" class="btn btn-outline-warning btn-sm">
+                                View Report <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Specialized reports for vineyard operations and grape production.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-success me-2">Grape Yield: 92%</span>
+                                <span class="badge bg-info">Quality: A+</span>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted">Harvest Season: October 2023</small>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'reports:vine_reports' %}" class="btn btn-outline-danger btn-sm">
+                                View Report <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Reports -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recently Generated Reports</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Report Name</th>
+                                    <th>Type</th>
+                                    <th>Generated By</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Q3 2023 Profitability Analysis</td>
+                                    <td><span class="badge bg-success">Profitability</span></td>
+                                    <td>John Doe</td>
+                                    <td>2023-10-15</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Monthly Operational Health</td>
+                                    <td><span class="badge bg-primary">Operational</span></td>
+                                    <td>System Auto</td>
+                                    <td>2023-11-01</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vineyard Harvest Report 2023</td>
+                                    <td><span class="badge bg-danger">Vine Report</span></td>
+                                    <td>Jane Smith</td>
+                                    <td>2023-10-30</td>
+                                    <td><span class="badge bg-warning">Pending Review</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sales Performance Q3</td>
+                                    <td><span class="badge bg-warning">Sales Insights</span></td>
+                                    <td>System Auto</td>
+                                    <td>2023-10-05</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize report dashboard
+        console.log('Reports dashboard loaded');
+    });
+</script>
+{% endblock %}

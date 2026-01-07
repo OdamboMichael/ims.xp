@@ -1,0 +1,469 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inventory Details - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:overview' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Overview
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:sales_revenue' %}">
+                            <i class="fas fa-chart-line me-2"></i>Sales/Revenue
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:yield_data' %}">
+                            <i class="fas fa-seedling me-2"></i>Yield
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:labor' %}">
+                            <i class="fas fa-users me-2"></i>Labor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:inputs' %}">
+                            <i class="fas fa-tools me-2"></i>Inputs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard:inventory' %}">
+                            <i class="fas fa-boxes me-2"></i>Inventory
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Inventory Details</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addInventoryModal">
+                        <i class="fas fa-plus me-1"></i>Add Item
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="exportCSV('inventory')">
+                        <i class="fas fa-download me-1"></i>Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Inventory Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total Inventory Value</h5>
+                            <h1 class="display-6">$185,400</h1>
+                            <p class="card-text">Current Market Value</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Inventory Turnover</h5>
+                            <h1 class="display-6">5.8</h1>
+                            <p class="card-text text-success">
+                                <i class="fas fa-arrow-up me-1"></i>+0.3 from last quarter
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Low Stock Items</h5>
+                            <h1 class="display-6">8</h1>
+                            <p class="card-text text-warning">Require attention</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Re-order Value</h5>
+                            <h1 class="display-6">$12,500</h1>
+                            <p class="card-text">Pending orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Value Chart -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Inventory Value by Category</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <canvas id="inventoryValueChart" height="300"></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Equipment
+                                    <span class="badge bg-primary rounded-pill">$88,000</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Fertilizers
+                                    <span class="badge bg-success rounded-pill">$28,500</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Seeds
+                                    <span class="badge bg-info rounded-pill">$15,200</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Chemicals
+                                    <span class="badge bg-warning rounded-pill">$22,300</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Feed & Supplements
+                                    <span class="badge bg-danger rounded-pill">$18,400</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Others
+                                    <span class="badge bg-secondary rounded-pill">$13,000</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Inventory -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Equipment Inventory</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>EQUIPMENT</th>
+                                    <th>TYPE</th>
+                                    <th>PURCHASE DATE</th>
+                                    <th>COST</th>
+                                    <th>LAST MAINTENANCE</th>
+                                    <th>CONDITION</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Tractor John Deere 5078E</strong></td>
+                                    <td><span class="badge bg-primary">Heavy Equipment</span></td>
+                                    <td>03/10/2021</td>
+                                    <td><strong>$88,000</strong></td>
+                                    <td>08/01/2023</td>
+                                    <td><span class="badge bg-success">Excellent</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-wrench"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Combine Harvester 5700</strong></td>
+                                    <td><span class="badge bg-primary">Heavy Equipment</span></td>
+                                    <td>07/20/2022</td>
+                                    <td><strong>$260,000</strong></td>
+                                    <td>09/10/2023</td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-wrench"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Baler</strong></td>
+                                    <td><span class="badge bg-info">Medium Equipment</span></td>
+                                    <td>05/01/2020</td>
+                                    <td><strong>$28,000</strong></td>
+                                    <td>06/15/2023</td>
+                                    <td><span class="badge bg-warning">Needs Service</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-wrench"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Irrigation System</strong></td>
+                                    <td><span class="badge bg-secondary">Infrastructure</span></td>
+                                    <td>08/15/2019</td>
+                                    <td><strong>$45,000</strong></td>
+                                    <td>07/30/2023</td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                            <i class="fas fa-wrench"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Details -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Water Infrastructure</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>SOURCE</th>
+                                            <th>SETUP DATE</th>
+                                            <th>SETUP COST</th>
+                                            <th>CONSUMPTION RATE</th>
+                                            <th>MONTHLY COST</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Well A</strong></td>
+                                            <td>01/10/2018</td>
+                                            <td>$19,000</td>
+                                            <td>8,000 gal/day</td>
+                                            <td><strong>$210</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>River Pump System</strong></td>
+                                            <td>09/25/2019</td>
+                                            <td>$22,000</td>
+                                            <td>12,000 gal/day</td>
+                                            <td><strong>$450</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Reservoir</strong></td>
+                                            <td>03/15/2020</td>
+                                            <td>$35,000</td>
+                                            <td>5,000 gal/day</td>
+                                            <td><strong>$180</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Utilities & Power</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>TYPE</th>
+                                            <th>CONSTRUCTION DATE</th>
+                                            <th>COST</th>
+                                            <th>CONSUMPTION RATE</th>
+                                            <th>MONTHLY COST</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Solar Panel Array</strong></td>
+                                            <td>11/05/2021</td>
+                                            <td>$90,000</td>
+                                            <td>3,000 kWh/month</td>
+                                            <td><strong>$50</strong> (maintenance)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Grid Connection</strong></td>
+                                            <td>01/01/2018</td>
+                                            <td>$8,000</td>
+                                            <td>2,500 kWh/month</td>
+                                            <td><strong>$375</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Generator Backup</strong></td>
+                                            <td>06/20/2022</td>
+                                            <td>$15,000</td>
+                                            <td>500 kWh/month</td>
+                                            <td><strong>$120</strong> (fuel)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Low Stock Items -->
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5 class="mb-0 text-white">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Low Stock Items Requiring Attention
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="alert alert-danger">
+                                <h6><i class="fas fa-exclamation-circle me-2"></i>Critically Low</h6>
+                                <ul class="mb-0">
+                                    <li>Ammonium Nitrate Fertilizer - 22 bags</li>
+                                    <li>Glyphosate Herbicide - 15 gallons</li>
+                                    <li>Diesel Fuel - 250 gallons</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Low Stock</h6>
+                                <ul class="mb-0">
+                                    <li>Hybrid Corn Seeds - 45 units</li>
+                                    <li>Animal Feed Pellets - 80 bags</li>
+                                    <li>Irrigation Pipes - 120 meters</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-info-circle me-2"></i>Monitor</h6>
+                                <ul class="mb-0">
+                                    <li>Vaccines - 45 doses</li>
+                                    <li>Fencing Materials - 150 units</li>
+                                    <li>Lubricants - 25 gallons</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary me-2">
+                            <i class="fas fa-shopping-cart me-1"></i>Place Re-order
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-print me-1"></i>Print Stock Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Add Inventory Modal -->
+<div class="modal fade" id="addInventoryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Inventory Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addInventoryForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Item Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" required>
+                                <option value="">Select Category</option>
+                                <option value="equipment">Equipment</option>
+                                <option value="fertilizer">Fertilizer</option>
+                                <option value="seeds">Seeds</option>
+                                <option value="chemicals">Chemicals</option>
+                                <option value="feed">Animal Feed</option>
+                                <option value="tools">Tools</option>
+                                <option value="infrastructure">Infrastructure</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Unit</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Unit Cost ($)</label>
+                            <input type="number" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Minimum Stock Level</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Reorder Quantity</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Storage Location</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitInventoryForm()">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeInventoryCharts();
+    });
+
+    function submitInventoryForm() {
+        // Add inventory form submission logic
+        alert('Inventory item added successfully!');
+        $('#addInventoryModal').modal('hide');
+    }
+</script>
+{% endblock %}

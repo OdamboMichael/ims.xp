@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div>
+            <h1 class="h2">{{ farmer.name }}</h1>
+            <p class="text-muted">Farmer ID: {{ farmer.farmer_id }}</p>
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:farmer_edit' farmer.id %}" class="btn btn-warning me-2">
+                <i class="fas fa-edit me-2"></i>Edit
+            </a>
+            <a href="{% url 'dashboard:farmers_list' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Farmers
+            </a>
+        </div>
+    </div>
+
+    <!-- Farmer Info -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    {% if farmer.photo %}
+                    <img src="{{ farmer.photo.url }}" alt="{{ farmer.name }}" class="rounded-circle mb-3" width="150" height="150">
+                    {% else %}
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 150px; height: 150px;">
+                        <i class="fas fa-user fa-4x"></i>
+                    </div>
+                    {% endif %}
+                    <h4>{{ farmer.name }}</h4>
+                    <p class="text-muted">Farmer ID: {{ farmer.farmer_id }}</p>
+                    <div class="d-flex justify-content-center mb-3">
+                        {% if farmer.is_active %}
+                        <span class="badge bg-success">Active</span>
+                        {% else %}
+                        <span class="badge bg-secondary">Inactive</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Contact Information</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        {% if farmer.email %}
+                        <tr>
+                            <th><i class="fas fa-envelope me-2"></i>Email:</th>
+                            <td><a href="mailto:{{ farmer.email }}">{{ farmer.email }}</a></td>
+                        </tr>
+                        {% endif %}
+                        {% if farmer.phone %}
+                        <tr>
+                            <th><i class="fas fa-phone me-2"></i>Phone:</th>
+                            <td><a href="tel:{{ farmer.phone }}">{{ farmer.phone }}</a></td>
+                        </tr>
+                        {% endif %}
+                        {% if farmer.national_id %}
+                        <tr>
+                            <th><i class="fas fa-id-card me-2"></i>National ID:</th>
+                            <td>{{ farmer.national_id }}</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <!-- Personal Information -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="mb-0">Personal Information</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Age:</strong> {{ farmer.age }} years
+                            </div>
+                            <div class="mb-3">
+                                <strong>Gender:</strong> 
+                                {% if farmer.gender == 'male' %}
+                                <span class="badge bg-primary">Male</span>
+                                {% elif farmer.gender == 'female' %}
+                                <span class="badge bg-pink">Female</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Other</span>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Years of Farming:</strong> {{ farmer.years_farming }} years
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Country:</strong> {{ farmer.country }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>County:</strong> {{ farmer.county }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Constituency:</strong> {{ farmer.constituency }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Ward:</strong> {{ farmer.ward }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Associated Farms -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Associated Farms ({{ farms.count }})</h6>
+                    <a href="{% url 'dashboard:farm_create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Add Farm
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Farm Name</th>
+                                    <th>Location</th>
+                                    <th>Size (ha)</th>
+                                    <th>Production Type</th>
+                                    <th>Cluster</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for farm in farms %}
+                                <tr>
+                                    <td>{{ farm.name }}</td>
+                                    <td>{{ farm.county }}, {{ farm.constituency }}</td>
+                                    <td>{{ farm.size }}</td>
+                                    <td>
+                                        <span class="badge bg-info">{{ farm.get_production_type_display }}</span>
+                                    </td>
+                                    <td>
+                                        {% if farm.cluster %}
+                                        <a href="{% url 'dashboard:cluster_detail' farm.cluster.id %}" class="badge bg-primary">
+                                            {{ farm.cluster.name }}
+                                        </a>
+                                        {% else %}
+                                        <span class="badge bg-secondary">No Cluster</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'dashboard:farm_detail' farm.id %}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-tractor fa-3x text-muted mb-3"></i>
+                                        <h5>No farms associated</h5>
+                                        <p class="text-muted">This farmer doesn't have any farms registered yet</p>
+                                        <a href="{% url 'dashboard:farm_create' %}" class="btn btn-primary">Add Farm</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clusters Membership -->
+            {% if clusters %}
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Cluster Memberships ({{ clusters.count }})</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cluster Name</th>
+                                    <th>Location</th>
+                                    <th>Join Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cluster in clusters %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            {% if cluster.logo %}
+                                            <img src="{{ cluster.logo.url }}" alt="{{ cluster.name }}" class="rounded-circle me-2" width="32" height="32">
+                                            {% endif %}
+                                            {{ cluster.name }}
+                                        </div>
+                                    </td>
+                                    <td>{{ cluster.location }}</td>
+                                    <td>
+                                        {% for membership in farmer.farmercluster_set.all %}
+                                            {% if membership.cluster == cluster %}
+                                                {{ membership.join_date|date:"Y-m-d" }}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if cluster.is_active %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'dashboard:cluster_detail' cluster.id %}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recent Production -->
+    <div class="card">
+        <div class="card-header">
+            <h6 class="mb-0">Recent Production from Farmer's Farms</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Farm</th>
+                            <th>Quantity</th>
+                            <th>Revenue</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for production in production_data %}
+                        <tr>
+                            <td>{{ production.product_name }}</td>
+                            <td>{{ production.farm.name }}</td>
+                            <td>{{ production.quantity }} {{ production.unit }}</td>
+                            <td>${{ production.total_revenue|floatformat:2 }}</td>
+                            <td>{{ production.date_recorded|date:"M d, Y" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4">
+                                <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                                <h5>No production data</h5>
+                                <p class="text-muted">Add production data for this farmer's farms</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

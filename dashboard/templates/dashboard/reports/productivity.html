@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Productivity & Efficiency Report - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:main' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:operational' %}">
+                            <i class="fas fa-chart-line me-2"></i>Operational Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:profitability' %}">
+                            <i class="fas fa-money-bill-wave me-2"></i>Profitability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'reports:productivity' %}">
+                            <i class="fas fa-industry me-2"></i>Productivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:sales_insights' %}">
+                            <i class="fas fa-chart-bar me-2"></i>Sales Insights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:vine_reports' %}">
+                            <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Productivity & Efficiency Analysis</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2" onclick="printReport()">
+                        <i class="fas fa-print me-1"></i>Print
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="exportReport('productivity')">
+                        <i class="fas fa-download me-1"></i>Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Productivity Metrics -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Yield per Acre</h5>
+                            <h1 class="display-6">8.2 tons</h1>
+                            <p class="card-text">
+                                <span class="text-success">+5.1% vs target</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Labor Efficiency</h5>
+                            <h1 class="display-6">93%</h1>
+                            <p class="card-text">
+                                <span class="text-warning">-2% vs target</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 93%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Water Usage Efficiency</h5>
+                            <h1 class="display-6">92%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+2% vs target</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Equipment Utilization</h5>
+                            <h1 class="display-6">88%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+3% vs last period</span>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productivity Charts -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Yield per Worker</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="yieldPerWorkerChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Input Cost vs. Yield</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="inputYieldChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Productivity Analysis -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Productivity by Crop Type</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Crop</th>
+                                    <th>Area (Acres)</th>
+                                    <th>Total Yield (tons)</th>
+                                    <th>Yield per Acre</th>
+                                    <th>Labor Hours/Acre</th>
+                                    <th>Input Cost/Acre</th>
+                                    <th>Productivity Score</th>
+                                    <th>Efficiency Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Corn</strong></td>
+                                    <td>200</td>
+                                    <td>1,600</td>
+                                    <td>8.0 tons</td>
+                                    <td>12.5 hrs</td>
+                                    <td>$320</td>
+                                    <td>8.5/10</td>
+                                    <td><span class="badge bg-success">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wheat</strong></td>
+                                    <td>150</td>
+                                    <td>750</td>
+                                    <td>5.0 tons</td>
+                                    <td>8.2 hrs</td>
+                                    <td>$240</td>
+                                    <td>7.2/10</td>
+                                    <td><span class="badge bg-warning">Medium</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Soybeans</strong></td>
+                                    <td>100</td>
+                                    <td>300</td>
+                                    <td>3.0 tons</td>
+                                    <td>6.5 hrs</td>
+                                    <td>$280</td>
+                                    <td>6.8/10</td>
+                                    <td><span class="badge bg-warning">Medium</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Potatoes</strong></td>
+                                    <td>50</td>
+                                    <td>400</td>
+                                    <td>8.0 tons</td>
+                                    <td>15.2 hrs</td>
+                                    <td>$380</td>
+                                    <td>7.8/10</td>
+                                    <td><span class="badge bg-success">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cotton</strong></td>
+                                    <td>75</td>
+                                    <td>225</td>
+                                    <td>3.0 tons</td>
+                                    <td>9.8 hrs</td>
+                                    <td>$320</td>
+                                    <td>6.5/10</td>
+                                    <td><span class="badge bg-warning">Medium</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Efficiency Analysis -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Resource Efficiency Over Time</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="resourceEfficiencyChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Efficiency Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    <h3>82%</h3>
+                                    <p class="text-muted">Overall Efficiency Score</p>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h3>7.8/10</h3>
+                                    <p class="text-muted">Productivity Index</p>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h3>88%</h3>
+                                    <p class="text-muted">Resource Utilization</p>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optimization Recommendations -->
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cogs me-2"></i>Optimization Recommendations
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-success">
+                                <h6><i class="fas fa-check me-2"></i>Best Practices</h6>
+                                <ul>
+                                    <li>Corn production shows excellent productivity at 8.0 tons/acre</li>
+                                    <li>Water usage efficiency improved by 4% this quarter</li>
+                                    <li>Equipment maintenance program reducing downtime by 15%</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Improvement Areas</h6>
+                                <ul>
+                                    <li>Soybean productivity below target at 3.0 tons/acre</li>
+                                    <li>Labor efficiency needs improvement in harvesting operations</li>
+                                    <li>Energy consumption per unit of output remains high</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>Recommended Actions:</h6>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-primary mb-3">
+                                    <div class="card-body">
+                                        <h6>Immediate Actions</h6>
+                                        <ul class="small">
+                                            <li>Implement precision irrigation</li>
+                                            <li>Optimize harvest schedules</li>
+                                            <li>Review equipment allocation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-warning mb-3">
+                                    <div class="card-body">
+                                        <h6>Short-term (1-3 months)</h6>
+                                        <ul class="small">
+                                            <li>Train staff on efficient techniques</li>
+                                            <li>Upgrade monitoring systems</li>
+                                            <li>Implement crop rotation plan</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success mb-3">
+                                    <div class="card-body">
+                                        <h6>Long-term (3-12 months)</h6>
+                                        <ul class="small">
+                                            <li>Invest in automation</li>
+                                            <li>Implement IoT monitoring</li>
+                                            <li>Expand high-productivity crops</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeProductivityCharts();
+    });
+
+    function printReport() {
+        window.print();
+    }
+
+    function exportReport(type) {
+        alert(`Exporting ${type} report...`);
+        // Add export logic here
+    }
+</script>
+{% endblock %}

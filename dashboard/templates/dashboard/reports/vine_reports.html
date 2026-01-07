@@ -1,0 +1,410 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Vine Reports - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:main' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:operational' %}">
+                            <i class="fas fa-chart-line me-2"></i>Operational Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:profitability' %}">
+                            <i class="fas fa-money-bill-wave me-2"></i>Profitability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:productivity' %}">
+                            <i class="fas fa-industry me-2"></i>Productivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:sales_insights' %}">
+                            <i class="fas fa-chart-bar me-2"></i>Sales Insights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'reports:vine_reports' %}">
+                            <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Vineyard Filters -->
+                <div class="mt-4">
+                    <h6 class="sidebar-heading px-3 mb-2">Vineyard Filters</h6>
+                    <div class="px-3">
+                        <div class="mb-3">
+                            <label class="form-label small">Vineyard Block</label>
+                            <select class="form-select form-select-sm">
+                                <option selected>All Blocks</option>
+                                <option>Block A - Cabernet</option>
+                                <option>Block B - Chardonnay</option>
+                                <option>Block C - Merlot</option>
+                                <option>Block D - Pinot Noir</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small">Grape Variety</label>
+                            <select class="form-select form-select-sm">
+                                <option selected>All Varieties</option>
+                                <option>Cabernet Sauvignon</option>
+                                <option>Chardonnay</option>
+                                <option>Merlot</option>
+                                <option>Pinot Noir</option>
+                                <option>Sauvignon Blanc</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-sm btn-danger w-100">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Vineyard Performance Reports</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2" onclick="printReport()">
+                        <i class="fas fa-print me-1"></i>Print
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="exportReport('vine')">
+                        <i class="fas fa-download me-1"></i>Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vineyard Overview -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total Vineyard Area</h5>
+                            <h1 class="display-6">85 acres</h1>
+                            <p class="card-text">
+                                4 vineyard blocks
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Grape Yield</h5>
+                            <h1 class="display-6">92%</h1>
+                            <p class="card-text text-success">
+                                <i class="fas fa-arrow-up me-1"></i>+5% vs target
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Grape Quality</h5>
+                            <h1 class="display-6">A+</h1>
+                            <p class="card-text text-success">
+                                95% premium grade
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Harvest Efficiency</h5>
+                            <h1 class="display-6">88%</h1>
+                            <p class="card-text text-warning">
+                                <i class="fas fa-minus me-1"></i>-2% vs target
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vineyard Performance -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Grape Yield by Variety</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="grapeYieldChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Quality Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="qualityDistributionChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Vineyard Analysis -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Vineyard Block Performance</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Block</th>
+                                    <th>Variety</th>
+                                    <th>Area (acres)</th>
+                                    <th>Vines Count</th>
+                                    <th>Yield/Acre (tons)</th>
+                                    <th>Quality Grade</th>
+                                    <th>Brix Level</th>
+                                    <th>pH Level</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Block A</strong></td>
+                                    <td>Cabernet Sauvignon</td>
+                                    <td>25</td>
+                                    <td>12,500</td>
+                                    <td>3.2</td>
+                                    <td><span class="badge bg-success">A+</span></td>
+                                    <td>24.5°</td>
+                                    <td>3.6</td>
+                                    <td><span class="badge bg-success">Excellent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block B</strong></td>
+                                    <td>Chardonnay</td>
+                                    <td>20</td>
+                                    <td>10,000</td>
+                                    <td>3.5</td>
+                                    <td><span class="badge bg-success">A</span></td>
+                                    <td>23.8°</td>
+                                    <td>3.4</td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block C</strong></td>
+                                    <td>Merlot</td>
+                                    <td>22</td>
+                                    <td>11,000</td>
+                                    <td>2.8</td>
+                                    <td><span class="badge bg-warning">B+</span></td>
+                                    <td>22.5°</td>
+                                    <td>3.7</td>
+                                    <td><span class="badge bg-warning">Average</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block D</strong></td>
+                                    <td>Pinot Noir</td>
+                                    <td>18</td>
+                                    <td>9,000</td>
+                                    <td>2.5</td>
+                                    <td><span class="badge bg-success">A</span></td>
+                                    <td>23.2°</td>
+                                    <td>3.5</td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vineyard Management -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Growth Cycle Monitoring</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="growthCycleChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Disease & Pest Incidence</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="pestIncidenceChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Harvest Analysis -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Harvest Analysis 2023</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Harvest Summary</h6>
+                            <ul>
+                                <li><strong>Harvest Period:</strong> September 15 - October 30, 2023</li>
+                                <li><strong>Total Yield:</strong> 280 tons of grapes</li>
+                                <li><strong>Average Brix:</strong> 23.5° (Optimal range: 22-26°)</li>
+                                <li><strong>Harvest Efficiency:</strong> 88% (Target: 90%)</li>
+                                <li><strong>Premium Grade:</strong> 85% of total harvest</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Quality Parameters</h6>
+                            <ul>
+                                <li><strong>Sugar Content:</strong> Optimal across all blocks</li>
+                                <li><strong>Acidity Levels:</strong> Within ideal range (pH 3.4-3.8)</li>
+                                <li><strong>Berry Size:</strong> Uniform and consistent</li>
+                                <li><strong>Color Development:</strong> Excellent for red varieties</li>
+                                <li><strong>Flavor Profile:</strong> Complex and well-developed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations & Actions -->
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clipboard-check me-2"></i>Vineyard Management Recommendations
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-success">
+                                <h6><i class="fas fa-check me-2"></i>Strengths</h6>
+                                <ul>
+                                    <li>Cabernet Sauvignon showing excellent quality (A+ grade)</li>
+                                    <li>Overall grape yield at 92% of potential</li>
+                                    <li>Disease incidence below industry average</li>
+                                    <li>Water management efficiency at 94%</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Areas for Improvement</h6>
+                                <ul>
+                                    <li>Merlot block showing below average yield (2.8 tons/acre)</li>
+                                    <li>Harvest efficiency needs improvement</li>
+                                    <li>Pinot Noir showing some vigor issues</li>
+                                    <li>Pruning schedule optimization needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>Seasonal Management Plan:</h6>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card border-primary mb-3">
+                                    <div class="card-header bg-primary text-white small">Winter (Dec-Feb)</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Pruning & training</li>
+                                            <li>Soil amendment</li>
+                                            <li>Infrastructure repair</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border-success mb-3">
+                                    <div class="card-header bg-success text-white small">Spring (Mar-May)</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Bud break monitoring</li>
+                                            <li>Frost protection</li>
+                                            <li>Canopy management</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border-warning mb-3">
+                                    <div class="card-header bg-warning text-white small">Summer (Jun-Aug)</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Irrigation management</li>
+                                            <li>Pest control</li>
+                                            <li>Veraison monitoring</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border-danger mb-3">
+                                    <div class="card-header bg-danger text-white small">Fall (Sep-Nov)</div>
+                                    <div class="card-body">
+                                        <ul class="small mb-0">
+                                            <li>Harvest planning</li>
+                                            <li>Quality testing</li>
+                                            <li>Post-harvest care</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Key Recommendations</h6>
+                        <ol>
+                            <li>Implement precision irrigation in Block C (Merlot) to improve yield</li>
+                            <li>Schedule additional soil testing for low-performing areas</li>
+                            <li>Optimize harvest crew scheduling to improve efficiency to 90%</li>
+                            <li>Consider grafting alternative varieties in underperforming sections</li>
+                            <li>Implement additional canopy management in vigorous areas</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeVineyardCharts();
+    });
+
+    function printReport() {
+        window.print();
+    }
+
+    function exportReport(type) {
+        alert(`Exporting ${type} report...`);
+        // Add export logic here
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,96 @@
+xpert_farmer_ims/
+├── manage.py
+├── requirements.txt
+├── .env
+├── ims/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── templates/
+│       └── base.html
+├── accounts/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── forms.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── utils.py
+│   └── templates/accounts/
+│       ├── login.html
+│       ├── register.html
+│       ├── register_institution.html
+│       ├── forgot_pin.html
+│       ├── reset_pin.html
+│       └── success.html
+├── dashboard/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── forms.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── utils.py
+│   └── templates/dashboard/
+│       ├── home.html
+│       ├── clusters/
+│       │   ├── list.html
+│       │   ├── detail.html
+│       │   ├── create.html
+│       │   └── manage.html
+│       ├── farms/
+│       │   ├── list.html
+│       │   ├── detail.html
+│       │   ├── create.html
+│       │   └── manage.html
+│       ├── farmers/
+│       │   ├── list.html
+│       │   ├── detail.html
+│       │   ├── create.html
+│       │   └── manage.html
+│       ├── production/
+│       │   ├── overview.html
+│       │   ├── sales_revenue.html
+│       │   ├── yield_data.html
+│       │   ├── labor.html
+│       │   ├── inputs.html
+│       │   └── inventory.html
+│       ├── reports/
+│       │   ├── main.html
+│       │   ├── operational.html
+│       │   ├── profitability.html
+│       │   ├── productivity.html
+│       │   ├── sales_insights.html
+│       │   └── vine_reports.html
+│       ├── users/
+│       │   ├── list.html
+│       │   ├── create.html
+│       │   └── manage.html
+│       └── settings/
+│           ├── account.html
+│           ├── profile.html
+│           ├── institution.html
+│           └── general.html
+├── static/
+│   ├── css/
+│   │   ├── style.css
+│   │   ├── dashboard.css
+│   │   └── responsive.css
+│   ├── js/
+│   │   ├── main.js
+│   │   ├── charts.js
+│   │   ├── forms.js
+│   │   └── utils.js
+│   ├── images/
+│   │   ├── logo.png
+│   │   └── favicon.ico
+│   └── vendors/
+│       ├── bootstrap/
+│       └── fontawesome/
+└── media/
+    ├── profiles/
+    ├── farms/
+    └── documents/

@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Manage Farm: {{ farm.name }}</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:farm_detail' farm.id %}" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-2"></i>Back to Farm
+            </a>
+        </div>
+    </div>
+
+    <!-- Management Tabs -->
+    <ul class="nav nav-tabs mb-4" id="farmManageTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="production-tab" data-bs-toggle="tab" data-bs-target="#production" type="button">
+                <i class="fas fa-chart-line me-2"></i>Production
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="yield-tab" data-bs-toggle="tab" data-bs-target="#yield" type="button">
+                <i class="fas fa-seedling me-2"></i>Yield
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="labor-tab" data-bs-toggle="tab" data-bs-target="#labor" type="button">
+                <i class="fas fa-users me-2"></i>Labor
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="inputs-tab" data-bs-toggle="tab" data-bs-target="#inputs" type="button">
+                <i class="fas fa-tools me-2"></i>Inputs
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button">
+                <i class="fas fa-cog me-2"></i>Settings
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="farmManageTabsContent">
+        <!-- Production Management -->
+        <div class="tab-pane fade show active" id="production" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Production Records</h5>
+                    <a href="{% url 'dashboard:sales_create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Production
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Date</th>
+                                    <th>Quantity</th>
+                                    <th>Price/Unit</th>
+                                    <th>Revenue</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for production in farm.productiondata_set.all|slice:":10" %}
+                                <tr>
+                                    <td>{{ production.product_name }}</td>
+                                    <td>{{ production.date_recorded|date:"M d, Y" }}</td>
+                                    <td>{{ production.quantity }} {{ production.unit }}</td>
+                                    <td>${{ production.price_per_unit|floatformat:2 }}</td>
+                                    <td>${{ production.total_revenue|floatformat:2 }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="#" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                                        <h5>No production records</h5>
+                                        <p class="text-muted">Add production records to track farm output</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yield Management -->
+        <div class="tab-pane fade" id="yield" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Yield Records</h5>
+                    <a href="{% url 'dashboard:yield_create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Yield
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Crop/Livestock</th>
+                                    <th>Date</th>
+                                    <th>Area/Count</th>
+                                    <th>Yield/Unit</th>
+                                    <th>Total Yield</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for yield in farm.yielddata_set.all|slice:":10" %}
+                                <tr>
+                                    <td>{{ yield.crop_livestock }}</td>
+                                    <td>{{ yield.date_recorded|date:"M d, Y" }}</td>
+                                    <td>{{ yield.area_count }}</td>
+                                    <td>{{ yield.yield_per_unit }}</td>
+                                    <td>{{ yield.total_yield }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="#" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
+                                        <h5>No yield records</h5>
+                                        <p class="text-muted">Add yield records to track crop/livestock production</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Labor Management -->
+        <div class="tab-pane fade" id="labor" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Labor Records</h5>
+                    <a href="{% url 'dashboard:labor_create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Labor
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Role</th>
+                                    <th>Category</th>
+                                    <th>Hourly Rate</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for labor in farm.labor_set.all|slice:":10" %}
+                                <tr>
+                                    <td>{{ labor.employee_name }}</td>
+                                    <td>{{ labor.get_role_display }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ labor.get_category_display }}</span>
+                                    </td>
+                                    <td>${{ labor.hourly_rate|floatformat:2 }}</td>
+                                    <td>
+                                        {% if labor.status == 'active' %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{{ labor.status }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="#" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                                        <h5>No labor records</h5>
+                                        <p class="text-muted">Add labor records to track farm employees</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inputs Management -->
+        <div class="tab-pane fade" id="inputs" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Farm Inputs</h5>
+                    <a href="{% url 'dashboard:inputs_create' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Input
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Item/Service</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Total Cost</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for input in farm.farminput_set.all|slice:":10" %}
+                                <tr>
+                                    <td>{{ input.date|date:"M d, Y" }}</td>
+                                    <td>{{ input.item_service }}</td>
+                                    <td>
+                                        <span class="badge bg-info">{{ input.get_category_display }}</span>
+                                    </td>
+                                    <td>{{ input.quantity }} {{ input.unit }}</td>
+                                    <td>${{ input.total_cost|floatformat:2 }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="#" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-tools fa-3x text-muted mb-3"></i>
+                                        <h5>No input records</h5>
+                                        <p class="text-muted">Add input records to track farm expenses</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-pane fade" id="settings" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Farm Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="{% url 'dashboard:farm_edit' farm.id %}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">Farm Name</label>
+                                    <input type="text" class="form-control" name="name" value="{{ farm.name }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Production Type</label>
+                                    <select class="form-select" name="production_type" required>
+                                        {% for key, value in farm.PRODUCTION_TYPES %}
+                                        <option value="{{ key }}" {% if farm.production_type == key %}selected{% endif %}>
+                                            {{ value }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Size (hectares)</label>
+                                    <input type="number" class="form-control" name="size" value="{{ farm.size }}" step="0.01" min="0" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Danger Zone</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted">Once you delete a farm, all associated data will be permanently removed.</p>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFarmModal">
+                                <i class="fas fa-trash me-2"></i>Delete this farm
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Farm Statistics</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <strong>Total Production Records:</strong> {{ farm.productiondata_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Total Yield Records:</strong> {{ farm.yielddata_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Total Labor Records:</strong> {{ farm.labor_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Total Input Records:</strong> {{ farm.farminput_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Creation Date:</strong> {{ farm.created_at|date:"F d, Y" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Farm Modal -->
+<div class="modal fade" id="deleteFarmModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Farm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the farm "{{ farm.name }}"?</p>
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Warning:</strong> This action will permanently delete:
+                    <ul class="mt-2 mb-0">
+                        <li>All production data from this farm</li>
+                        <li>All yield records from this farm</li>
+                        <li>All labor records from this farm</li>
+                        <li>All input records from this farm</li>
+                        <li>All inventory items from this farm</li>
+                        <li>This action cannot be undone</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="post" action="{% url 'dashboard:farm_delete' farm.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete Farm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

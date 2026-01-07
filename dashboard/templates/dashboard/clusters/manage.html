@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Manage Cluster: {{ cluster.name }}</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:cluster_detail' cluster.id %}" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-2"></i>Back to Cluster
+            </a>
+        </div>
+    </div>
+
+    <!-- Management Tabs -->
+    <ul class="nav nav-tabs mb-4" id="clusterManageTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="farmers-tab" data-bs-toggle="tab" data-bs-target="#farmers" type="button">
+                <i class="fas fa-user-friends me-2"></i>Manage Farmers
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="farms-tab" data-bs-toggle="tab" data-bs-target="#farms" type="button">
+                <i class="fas fa-tractor me-2"></i>Cluster Farms
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button">
+                <i class="fas fa-cog me-2"></i>Cluster Settings
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="clusterManageTabsContent">
+        <!-- Farmers Management Tab -->
+        <div class="tab-pane fade show active" id="farmers" role="tabpanel">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Farmers in Cluster ({{ cluster.farmer_set.count }})</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFarmerModal">
+                        <i class="fas fa-user-plus me-2"></i>Add Farmer
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Farmer ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Join Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for farmer in cluster.farmer_set.all %}
+                                <tr>
+                                    <td>{{ farmer.farmer_id }}</td>
+                                    <td>{{ farmer.name }}</td>
+                                    <td>{{ farmer.phone|default:"-" }}</td>
+                                    <td>
+                                        {% for membership in farmer.farmercluster_set.all %}
+                                            {% if membership.cluster == cluster %}
+                                                {{ membership.join_date|date:"Y-m-d" }}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if farmer.is_active %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{% url 'dashboard:farmer_detail' farmer.id %}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{% url 'dashboard:cluster_remove_farmer' cluster.id farmer.id %}" 
+                                               class="btn btn-sm btn-danger"
+                                               onclick="return confirm('Remove {{ farmer.name }} from this cluster?')">
+                                                <i class="fas fa-user-minus"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-user-friends fa-3x text-muted mb-3"></i>
+                                        <h5>No farmers in this cluster</h5>
+                                        <p class="text-muted">Add farmers to get started</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Farms Tab -->
+        <div class="tab-pane fade" id="farms" role="tabpanel">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Farms in Cluster ({{ cluster.farm_set.count }})</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Farm Name</th>
+                                    <th>Farmer</th>
+                                    <th>Size (ha)</th>
+                                    <th>Production Type</th>
+                                    <th>Location</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for farm in cluster.farm_set.all %}
+                                <tr>
+                                    <td>{{ farm.name }}</td>
+                                    <td>{{ farm.farmer.name }}</td>
+                                    <td>{{ farm.size }}</td>
+                                    <td>{{ farm.get_production_type_display }}</td>
+                                    <td>{{ farm.county }}, {{ farm.constituency }}</td>
+                                    <td>
+                                        <a href="{% url 'dashboard:farm_detail' farm.id %}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="fas fa-tractor fa-3x text-muted mb-3"></i>
+                                        <h5>No farms in this cluster</h5>
+                                        <p class="text-muted">Farms will appear here when added by farmers</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-pane fade" id="settings" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Cluster Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="{% url 'dashboard:cluster_edit' cluster.id %}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">Cluster Name</label>
+                                    <input type="text" class="form-control" value="{{ cluster.name }}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select" name="is_active">
+                                        <option value="true" {% if cluster.is_active %}selected{% endif %}>Active</option>
+                                        <option value="false" {% if not cluster.is_active %}selected{% endif %}>Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" rows="3" name="description">{{ cluster.description }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Danger Zone</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted">Once you delete a cluster, there is no going back. Please be certain.</p>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClusterModal">
+                                <i class="fas fa-trash me-2"></i>Delete this cluster
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Cluster Statistics</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <strong>Total Farmers:</strong> {{ cluster.farmer_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Total Farms:</strong> {{ cluster.farm_set.count }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Total Area:</strong> {{ cluster.total_area }} ha
+                            </div>
+                            <div class="mb-3">
+                                <strong>Creation Date:</strong> {{ cluster.creation_date|date:"F d, Y" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Farmer Modal -->
+<div class="modal fade" id="addFarmerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Farmer to Cluster</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" action="{% url 'dashboard:cluster_add_farmer' cluster.id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Farmer ID</label>
+                        <input type="text" class="form-control" name="farmer_id" required 
+                               placeholder="Enter farmer ID (e.g., FARM-001)">
+                        <div class="form-text">Enter the unique ID of the farmer to add</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Join Date</label>
+                        <input type="date" class="form-control" name="join_date" required 
+                               value="{% now 'Y-m-d' %}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Farmer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Cluster Modal -->
+<div class="modal fade" id="deleteClusterModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Cluster</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the cluster "{{ cluster.name }}"?</p>
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Warning:</strong> This action will:
+                    <ul class="mt-2 mb-0">
+                        <li>Remove all farmer associations with this cluster</li>
+                        <li>Disconnect all farms from this cluster</li>
+                        <li>Delete all cluster-specific data</li>
+                        <li>This action cannot be undone</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="post" action="{% url 'dashboard:cluster_delete' cluster.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete Cluster</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

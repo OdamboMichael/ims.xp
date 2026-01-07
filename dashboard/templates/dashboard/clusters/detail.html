@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div>
+            <h1 class="h2">{{ cluster.name }}</h1>
+            <p class="text-muted">{{ cluster.description }}</p>
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:cluster_edit' cluster.id %}" class="btn btn-warning me-2">
+                <i class="fas fa-edit me-2"></i>Edit
+            </a>
+            <a href="{% url 'dashboard:cluster_add_farmer' cluster.id %}" class="btn btn-primary">
+                <i class="fas fa-user-plus me-2"></i>Add Farmer
+            </a>
+        </div>
+    </div>
+
+    <!-- Cluster Info Cards -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Farmers</h6>
+                            <h2 class="card-title">{{ total_farmers }}</h2>
+                            <p class="card-text">Registered in this cluster</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Area</h6>
+                            <h2 class="card-title">{{ total_area|floatformat:0 }} ha</h2>
+                            <p class="card-text">Combined farm size</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Farms</h6>
+                            <h2 class="card-title">{{ total_farms }}</h2>
+                            <p class="card-text">Registered farms</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+                            <h2 class="card-title">${{ total_revenue|floatformat:2 }}</h2>
+                            <p class="card-text">From cluster production</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Cluster Information</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Location:</strong>
+                        <p class="mb-0">{{ cluster.location }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Creation Date:</strong>
+                        <p class="mb-0">{{ cluster.creation_date|date:"F d, Y" }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Status:</strong>
+                        <p class="mb-0">
+                            {% if cluster.is_active %}
+                            <span class="badge bg-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% if cluster.logo %}
+                    <div class="text-center mt-4">
+                        <img src="{{ cluster.logo.url }}" alt="{{ cluster.name }}" class="img-fluid rounded" style="max-height: 150px;">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Farmers in Cluster -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Farmers in Cluster ({{ total_farmers }})</h5>
+            <form method="get" class="w-50">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search farmers in this cluster..." value="{{ request.GET.search }}">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Farmer ID</th>
+                            <th>Name</th>
+                            <th>Farm Size (ha)</th>
+                            <th>Join Date</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for farmer in farmers %}
+                        <tr>
+                            <td>{{ farmer.farmer_id }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {% if farmer.photo %}
+                                    <img src="{{ farmer.photo.url }}" alt="{{ farmer.name }}" class="rounded-circle me-2" width="32" height="32">
+                                    {% endif %}
+                                    {{ farmer.name }}
+                                </div>
+                            </td>
+                            <td>
+                                {% with farmer_farm=farms|first %}
+                                {{ farmer_farm.size|default:"0" }}
+                                {% endwith %}
+                            </td>
+                            <td>
+                                {% for farmer_cluster in farmer.farmercluster_set.all %}
+                                    {% if farmer_cluster.cluster == cluster %}
+                                        {{ farmer_cluster.join_date|date:"Y-m-d" }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if farmer.phone %}
+                                <a href="tel:{{ farmer.phone }}" class="text-decoration-none">
+                                    <i class="fas fa-phone me-1"></i>{{ farmer.phone }}
+                                </a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{% url 'dashboard:farmer_detail' farmer.id %}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'dashboard:cluster_remove_farmer' cluster.id farmer.id %}" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-user-minus"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <i class="fas fa-user-friends fa-3x text-muted mb-3"></i>
+                                <h5>No farmers in this cluster</h5>
+                                <p class="text-muted">Add farmers to this cluster to get started</p>
+                                <a href="{% url 'dashboard:cluster_add_farmer' cluster.id %}" class="btn btn-primary">Add Farmer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if farmers.has_other_pages %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if farmers.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ farmers.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in farmers.paginator.page_range %}
+                        {% if farmers.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                        {% elif num > farmers.number|add:'-3' and num < farmers.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if farmers.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ farmers.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recent Production Data -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Recent Production from Cluster Farms</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Farm</th>
+                            <th>Quantity</th>
+                            <th>Price/Unit</th>
+                            <th>Total Revenue</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for production in production_data %}
+                        <tr>
+                            <td>{{ production.product_name }}</td>
+                            <td>{{ production.farm.name }}</td>
+                            <td>{{ production.quantity }} {{ production.unit }}</td>
+                            <td>${{ production.price_per_unit|floatformat:2 }}</td>
+                            <td>${{ production.total_revenue|floatformat:2 }}</td>
+                            <td>{{ production.date_recorded|date:"M d, Y" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
+                                <h5>No production data</h5>
+                                <p class="text-muted">Add production data for farms in this cluster</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

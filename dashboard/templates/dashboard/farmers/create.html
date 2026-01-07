@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Add New Farmer</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'dashboard:farmers_list' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Farmers
+            </a>
+        </div>
+    </div>
+
+    <!-- Creation Form -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-user-plus me-2"></i>Farmer Details</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-3">Personal Information</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.farmer_id|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.name|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.national_id|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    {{ form.age|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    {{ form.gender|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.years_farming|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.photo|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location Details -->
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-3">Location Details</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.country|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.county|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.constituency|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.ward|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.residence_county|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.residence_constituency|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'dashboard:farmers_list' %}" class="btn btn-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Add Farmer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>About Farmers</h6>
+                </div>
+                <div class="card-body">
+                    <p>Farmers are the primary users of the system. Each farmer can have multiple farms and can belong to multiple clusters.</p>
+                    <ul>
+                        <li><strong>Farmer ID:</strong> Unique identifier for each farmer (e.g., FARM-001)</li>
+                        <li><strong>National ID:</strong> Government-issued identification number</li>
+                        <li><strong>Years of Farming:</strong> Experience in agricultural activities</li>
+                        <li><strong>Location:</strong> Current operational area for farming activities</li>
+                        <li><strong>Residence:</strong> Where the farmer lives (may differ from farm location)</li>
+                    </ul>
+                    <p class="mb-0">After adding a farmer, you can assign farms to them and add them to clusters for better management.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Form validation
+(function() {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+
+// Photo preview
+document.getElementById('id_photo').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('photoPreview');
+    
+    if (preview) {
+        preview.remove();
+    }
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.id = 'photoPreview';
+            img.src = e.target.result;
+            img.className = 'img-thumbnail mt-2';
+            img.style.maxWidth = '200px';
+            img.style.display = 'block';
+            event.target.parentNode.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <!-- Left Side - Brand/Info -->
+        <div class="col-lg-6 d-none d-lg-block bg-primary text-white p-5">
+            <div class="d-flex flex-column justify-content-center h-100">
+                <div class="mb-5">
+                    <h1 class="display-4 fw-bold mb-3">Xpert Farmer IMS</h1>
+                    <p class="lead">Secure access to your agricultural management platform.</p>
+                </div>
+                
+                <div class="mt-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-shield-alt fa-2x me-3"></i>
+                        <div>
+                            <h5>Account Security</h5>
+                            <p class="mb-0">We take your account security seriously</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-envelope fa-2x me-3"></i>
+                        <div>
+                            <h5>Secure Recovery</h5>
+                            <p class="mb-0">OTP will be sent to your registered email</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-clock fa-2x me-3"></i>
+                        <div>
+                            <h5>Quick Process</h5>
+                            <p class="mb-0">Reset your PIN in just a few steps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Forgot PIN Form -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="w-100" style="max-width: 400px;">
+                <div class="text-center mb-5">
+                    <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS" height="60" class="d-lg-none mb-3">
+                    <h2 class="fw-bold text-primary">Forgot your PIN?</h2>
+                    <p class="text-muted">Enter your email address and we'll send you an OTP to reset your PIN.</p>
+                </div>
+
+                {% if messages %}
+                <div class="mb-4">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mb-4">
+                        <i class="fas fa-paper-plane me-2"></i>Request OTP
+                    </button>
+
+                    <div class="text-center">
+                        <p class="text-muted">
+                            Remember your PIN? 
+                            <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold text-primary">
+                                Back to Login
+                            </a>
+                        </p>
+                    </div>
+                </form>
+
+                <div class="mt-5 pt-4 border-top">
+                    <div class="text-center">
+                        <small class="text-muted">
+                            &copy; 2024 Xpert Farmer IMS. All rights reserved.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #244328 0%, #3e6a4a 100%);
+}
+</style>
+{% endblock %}

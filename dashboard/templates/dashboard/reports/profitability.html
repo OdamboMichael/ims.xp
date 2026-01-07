@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profitability Insights - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:main' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:operational' %}">
+                            <i class="fas fa-chart-line me-2"></i>Operational Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'reports:profitability' %}">
+                            <i class="fas fa-money-bill-wave me-2"></i>Profitability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:productivity' %}">
+                            <i class="fas fa-industry me-2"></i>Productivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:sales_insights' %}">
+                            <i class="fas fa-chart-bar me-2"></i>Sales Insights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:vine_reports' %}">
+                            <i class="fas fa-wine-bottle me-2"></i>Vine Reports
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Profitability Insights</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2" onclick="printReport()">
+                        <i class="fas fa-print me-1"></i>Print
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="exportReport('profitability')">
+                        <i class="fas fa-download me-1"></i>Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Revenue</h5>
+                            <h1 class="display-6">$253,000</h1>
+                            <p class="card-text">
+                                <span class="text-success">+15% vs last period</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Gross Profit</h5>
+                            <h1 class="display-6">$113,850</h1>
+                            <p class="card-text">
+                                <span class="text-success">+18% vs last period</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Net Profit Margin</h5>
+                            <h1 class="display-6">24.5%</h1>
+                            <p class="card-text">
+                                <span class="text-success">+2.3% vs last period</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profitability Analysis -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Gross Margin per Crop</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="grossMarginChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Profitability Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="profitDistributionChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost Analysis -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Cost per Unit of Yield</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Crop/Livestock</th>
+                                    <th>Production Cost/Unit</th>
+                                    <th>Selling Price/Unit</th>
+                                    <th>Gross Margin/Unit</th>
+                                    <th>Margin %</th>
+                                    <th>ROI</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Corn</strong></td>
+                                    <td>$4.25</td>
+                                    <td>$6.50</td>
+                                    <td>$2.25</td>
+                                    <td>34.6%</td>
+                                    <td><span class="badge bg-success">139%</span></td>
+                                    <td><span class="badge bg-success">Excellent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Milk</strong></td>
+                                    <td>$2.45</td>
+                                    <td>$3.50</td>
+                                    <td>$1.05</td>
+                                    <td>30.0%</td>
+                                    <td><span class="badge bg-success">110%</span></td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Beef</strong></td>
+                                    <td>$3.50</td>
+                                    <td>$5.00</td>
+                                    <td>$1.50</td>
+                                    <td>30.0%</td>
+                                    <td><span class="badge bg-success">95%</span></td>
+                                    <td><span class="badge bg-success">Good</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Soybeans</strong></td>
+                                    <td>$10.50</td>
+                                    <td>$12.00</td>
+                                    <td>$1.50</td>
+                                    <td>12.5%</td>
+                                    <td><span class="badge bg-warning">45%</span></td>
+                                    <td><span class="badge bg-warning">Average</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wheat</strong></td>
+                                    <td>$4.00</td>
+                                    <td>$4.80</td>
+                                    <td>$0.80</td>
+                                    <td>16.7%</td>
+                                    <td><span class="badge bg-warning">50%</span></td>
+                                    <td><span class="badge bg-warning">Average</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Breakdown -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Expense Breakdown</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="expenseBreakdownChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Income vs Expense Trend</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="incomeExpenseChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actionable Insights -->
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Actionable Insights
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-arrow-up me-2"></i>Positive Trends</h6>
+                        <ul>
+                            <li><strong>Profitability up 8%:</strong> Increased potato prices contributed to higher gross margin. Consider allocating more land to potatoes next season.</li>
+                            <li><strong>Cost optimization successful:</strong> Production costs reduced by 5.6% through efficient resource management.</li>
+                            <li><strong>Revenue growth:</strong> Strong performance in corn and dairy segments driving overall profitability.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i>Areas for Improvement</h6>
+                        <ul>
+                            <li><strong>High Input/Low Yield:</strong> Zone B-3 showing high input costs but below average yield. Recommend soil testing before next planting.</li>
+                            <li><strong>Wheat profitability:</strong> Margin below target at 16.7%. Consider crop rotation or hybrid varieties.</li>
+                            <li><strong>Soybean ROI:</strong> Below average ROI of 45%. Review input costs and consider alternative crops.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Recommendations</h6>
+                        <ol>
+                            <li>Increase corn production area by 15% for next season based on current market trends</li>
+                            <li>Implement precision agriculture techniques in Zone B-3 to optimize input usage</li>
+                            <li>Explore contract farming opportunities for high-margin crops</li>
+                            <li>Review and renegotiate supplier contracts for better pricing</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeProfitabilityCharts();
+    });
+
+    function printReport() {
+        window.print();
+    }
+
+    function exportReport(type) {
+        alert(`Exporting ${type} report...`);
+        // Add export logic here
+    }
+</script>
+{% endblock %}

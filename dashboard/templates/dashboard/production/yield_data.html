@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Yield Data Analysis - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:overview' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i>Overview
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:sales_revenue' %}">
+                            <i class="fas fa-chart-line me-2"></i>Sales/Revenue
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard:yield_data' %}">
+                            <i class="fas fa-seedling me-2"></i>Yield
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:labor' %}">
+                            <i class="fas fa-users me-2"></i>Labor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:inputs' %}">
+                            <i class="fas fa-tools me-2"></i>Inputs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:inventory' %}">
+                            <i class="fas fa-boxes me-2"></i>Inventory
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Yield Data Analysis</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <select class="form-select form-select-sm" id="yieldSeason">
+                            <option value="2024">2024 Season</option>
+                            <option value="2023" selected>2023 Season</option>
+                            <option value="2022">2022 Season</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="exportCSV('yield')">
+                        <i class="fas fa-download me-1"></i>Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Yield Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total Yield</h5>
+                            <h1 class="display-6">1,250 tons</h1>
+                            <p class="card-text">+8.5% vs last season</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Crop Yield</h5>
+                            <h1 class="display-6">950 tons</h1>
+                            <p class="card-text">+10.2% vs last season</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Livestock Yield</h5>
+                            <h1 class="display-6">300 tons</h1>
+                            <p class="card-text">+3.8% vs last season</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Yield per Acre</h5>
+                            <h1 class="display-6">8.2 tons</h1>
+                            <p class="card-text">+5.1% vs last season</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yield Records Table -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Yield Records</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>PRODUCT NAME</th>
+                                    <th>TYPE</th>
+                                    <th>QUANTITY</th>
+                                    <th>DATE</th>
+                                    <th>QUALITY GRADE</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Corn</strong></td>
+                                    <td><span class="badge bg-success">Crop</span></td>
+                                    <td>500 tons</td>
+                                    <td>2025-10-15</td>
+                                    <td><span class="badge bg-info">Grade A</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Soybeans</strong></td>
+                                    <td><span class="badge bg-success">Crop</span></td>
+                                    <td>350 tons</td>
+                                    <td>2025-11-03</td>
+                                    <td><span class="badge bg-info">Grade A</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cattle</strong></td>
+                                    <td><span class="badge bg-primary">Livestock</span></td>
+                                    <td>200 head</td>
+                                    <td>2025-12-01</td>
+                                    <td><span class="badge bg-success">Grade B+</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wheat</strong></td>
+                                    <td><span class="badge bg-success">Crop</span></td>
+                                    <td>400 tons</td>
+                                    <td>2025-09-20</td>
+                                    <td><span class="badge bg-warning">Grade B</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Milk</strong></td>
+                                    <td><span class="badge bg-info">Dairy</span></td>
+                                    <td>10,000 gallons</td>
+                                    <td>2025-10-30</td>
+                                    <td><span class="badge bg-info">Grade A</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yield Comparison Charts -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Yield vs. Rainfall</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="yieldRainfallChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Crop Yield Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="cropYieldChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yield Data Table -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Detailed Yield Data</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Crop/Livestock</th>
+                                    <th>Area/Count</th>
+                                    <th>Yield per Unit</th>
+                                    <th>Total Yield</th>
+                                    <th>Growth Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Corn</td>
+                                    <td>200 Acres</td>
+                                    <td>180 bushels/acre</td>
+                                    <td>36,000 bushels</td>
+                                    <td><span class="badge bg-success">+12%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Dairy Cows</td>
+                                    <td>150 Head</td>
+                                    <td>8 gallons/day</td>
+                                    <td>1,200 gallons/day</td>
+                                    <td><span class="badge bg-success">+5%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Wheat</td>
+                                    <td>150 Acres</td>
+                                    <td>60 bushels/acre</td>
+                                    <td>9,000 bushels</td>
+                                    <td><span class="badge bg-warning">-3%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Soybeans</td>
+                                    <td>100 Acres</td>
+                                    <td>45 bushels/acre</td>
+                                    <td>4,500 bushels</td>
+                                    <td><span class="badge bg-success">+8%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/charts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeYieldCharts();
+    });
+</script>
+{% endblock %}
