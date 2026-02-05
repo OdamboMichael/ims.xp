@@ -6,53 +6,15 @@ from .models import Institution, UserProfile, OTP, SecuritySettings
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Div, HTML, Field
 
-class InstitutionRegistrationForm(forms.ModelForm):
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            'placeholder': 'Enter your email address',
-            'class': 'form-control'
-        })
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Create a password',
-            'class': 'form-control'
-        }),
-        min_length=8
-    )
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Confirm your password',
-            'class': 'form-control'
-        })
-    )
-    pin = forms.CharField(
-        max_length=6,
-        min_length=4,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Create a 4-6 digit PIN',
-            'class': 'form-control',
-            'maxlength': '6'
-        }),
-        validators=[
-            RegexValidator(
-                regex='^[0-9]{4,6}$',
-                message='PIN must be 4-6 digits'
-            )
-        ]
-    )
-    confirm_pin = forms.CharField(
-        max_length=6,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Confirm your PIN',
-            'class': 'form-control',
-            'maxlength': '6'
-        })
-    )
-    agree_terms = forms.BooleanField(
-        required=True,
-        error_messages={'required': 'You must agree to the terms and conditions'}
-    )
+class InstitutionRegistrationForm(forms.Form):
+    name = forms.CharField(max_length=255)
+    institution_type = forms.ChoiceField(choices=Institution.INSTITUTION_TYPES)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput, min_length=8)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    pin = forms.CharField(max_length=6, min_length=4, widget=forms.PasswordInput)
+    confirm_pin = forms.CharField(max_length=6, widget=forms.PasswordInput)
+    agree_terms = forms.BooleanField(required=True)
 
     class Meta:
         model = Institution

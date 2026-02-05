@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation 
         <div class="col-md-3 col-lg-2 d-md-block sidebar">
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
@@ -21,33 +21,33 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'settings:account' %}">
+                        <a class="nav-link active" href="{% url 'dashboard:settings_account' %}">
                             <i class="fas fa-cog me-2"></i>Settings
                         </a>
                     </li>
-                </ul>
+                </ul>-->
                 
                 <!-- Settings Submenu -->
                 <div class="mt-4">
                     <h6 class="sidebar-heading px-3 mb-2">Settings</h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'settings:account' %}">
+                            <a class="nav-link" href="{% url 'dashboard:settings_account' %}">
                                 <i class="fas fa-user-cog me-2"></i>Account
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'settings:profile' %}">
+                            <a class="nav-link" href="{% url 'dashboard:settings_profile' %}">
                                 <i class="fas fa-user me-2"></i>Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'settings:institution' %}">
+                            <a class="nav-link" href="{% url 'dashboard:settings_institution' %}">
                                 <i class="fas fa-building me-2"></i>Institution
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'settings:general' %}">
+                            <a class="nav-link active" href="{% url 'dashboard:settings_general' %}">
                                 <i class="fas fa-sliders-h me-2"></i>General
                             </a>
                         </li>

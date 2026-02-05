@@ -1430,3 +1430,23 @@ def error_404(request, exception=None):
 def error_500(request, exception=None):
     """Handler for 500 Server Error"""
     return render(request, '500.html', status=500)
+
+
+
+def reports_main(request):
+    return render(request, 'dashboard/reports/main.html')
+
+def reports_operational(request):
+    return render(request, 'dashboard/reports/operational.html')
+
+def reports_productivity(request):
+    return render(request, 'dashboard/reports/productivity.html')
+
+def reports_profitability(request):
+    return render(request, 'dashboard/reports/profitability.html')
+
+def reports_sales_insights(request):
+    return render(request, 'dashboard/reports/sales_insights.html')
+
+def reports_vine(request):
+    return render(request, 'dashboard/reports/vine_reports.html')

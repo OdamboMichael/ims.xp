@@ -85,14 +85,22 @@ WSGI_APPLICATION = 'ims.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # In IMS/ims/settings.py
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#       'NAME': 'ims_db',  # Your database name
+#       'USER': 'postgres',      # Database user
+#        'PASSWORD': '1234',  # PostgreSQL password
+#       'HOST': 'localhost',
+#       'PORT': '5432',
+#   }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ims_db',  # Your database name
-        'USER': 'postgres',      # Database user
-        'PASSWORD': '1234',  # PostgreSQL password
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

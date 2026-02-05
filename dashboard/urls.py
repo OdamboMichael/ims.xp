@@ -49,6 +49,24 @@ urlpatterns = [
     path('reports/<uuid:report_id>/', views.report_detail, name='report_detail'),
     path('reports/<uuid:report_id>/download/', views.report_download, name='report_download'),
     path('reports/<uuid:report_id>/delete/', views.report_delete, name='report_delete'),
+
+
+    # Reports
+    path('reports/', views.reports_main, name='reports_main'),
+
+    path('reports/operational/', views.reports_operational, name='reports_operational'),
+    path('reports/productivity/', views.reports_productivity, name='reports_productivity'),
+    path('reports/profitability/', views.reports_profitability, name='reports_profitability'),
+    path('reports/sales-insights/', views.reports_sales_insights, name='reports_sales_insights'),
+    path('reports/vine/', views.reports_vine, name='reports_vine'),
+
+    # Existing dynamic report routes
+    path('reports/generate/', views.report_generate, name='report_generate'),
+    path('reports/<uuid:report_id>/', views.report_detail, name='report_detail'),
+    path('reports/<uuid:report_id>/download/', views.report_download, name='report_download'),
+    path('reports/<uuid:report_id>/delete/', views.report_delete, name='report_delete'),
+
+    
     
     # Settings
     path('settings/', views.settings_view, name='settings'),

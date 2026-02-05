@@ -34,14 +34,14 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Total Revenue</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ total_revenue|floatformat:2 }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">KSH{{ total_revenue|floatformat:2 }}</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12.5%</span>
                                 <span>vs last month</span>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@
                                     <td>{{ production.farm.name }}</td>
                                     <td>{{ production.quantity }} {{ production.unit }}</td>
                                     <td>{{ production.date_recorded|date:"M d" }}</td>
-                                    <td>${{ production.total_revenue|floatformat:2 }}</td>
+                                    <td>KSH {{ production.total_revenue|floatformat:2 }}</td>
                                 </tr>
                                 {% empty %}
                                 <tr>
@@ -315,7 +315,7 @@ var revenueChart = new Chart(ctx, {
     data: {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [{
-            label: 'Revenue ($)',
+            label: 'Revenue (KSH)',
             data: [12000, 19000, 15000, 25000, 22000, 30000, 28000],
             borderColor: '#4e73df',
             backgroundColor: 'rgba(78, 115, 223, 0.05)',
@@ -346,7 +346,7 @@ var revenueChart = new Chart(ctx, {
                 beginAtZero: true,
                 ticks: {
                     callback: function(value) {
-                        return '$' + value.toLocaleString();
+                        return 'KSH' + value.toLocaleString();
                     }
                 }
             }

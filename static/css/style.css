@@ -71,6 +71,7 @@ body {
     color: var(--gray-800);
     background-color: var(--gray-50);
     line-height: 1.5;
+    padding-top: 56px;
 }
 
 /* Typography */
@@ -263,6 +264,7 @@ a:hover {
     background-color: var(--white);
     border-right: 1px solid var(--gray-200);
     min-height: calc(100vh - 56px);
+    padding-top: 56px;
 }
 
 .sidebar .nav-link {
