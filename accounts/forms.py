@@ -6,7 +6,7 @@ from .models import Institution, UserProfile, OTP, SecuritySettings
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Div, HTML, Field
 
-class InstitutionRegistrationForm(forms.Form):
+class InstitutionRegistrationForm(forms.ModelForm):
     name = forms.CharField(max_length=255)
     institution_type = forms.ChoiceField(choices=Institution.INSTITUTION_TYPES)
     email = forms.EmailField()

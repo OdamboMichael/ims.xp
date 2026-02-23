@@ -32,7 +32,7 @@
                         <i class="fas fa-clock fa-2x me-3"></i>
                         <div>
                             <h5>Quick Process</h5>
-                            <p class="mb-0">Reset your PIN in just a few steps</p>
+                            <p class="mb-0">Reset your Password in just a few steps</p>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
             <div class="w-100" style="max-width: 400px;">
                 <div class="text-center mb-5">
                     <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS" height="60" class="d-lg-none mb-3">
-                    <h2 class="fw-bold text-primary">Forgot your PIN?</h2>
-                    <p class="text-muted">Enter your email address and we'll send you an OTP to reset your PIN.</p>
+                    <h2 class="fw-bold text-primary">Forgot your Password?</h2>
+                    <p class="text-muted">Enter your email address and we'll send you an OTP to reset your Password.</p>
                 </div>
 
                 {% if messages %}
@@ -72,7 +72,7 @@
 
                     <div class="text-center">
                         <p class="text-muted">
-                            Remember your PIN? 
+                            Remember your Password? 
                             <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold text-primary">
                                 Back to Login
                             </a>
@@ -94,11 +94,11 @@
 
 <style>
 .bg-primary {
-    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+    background: linear-gradient(135deg, #22C55E 0%, #22C55E 100%) !important;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    background: linear-gradient(135deg, #22C55E 0%, #22C55E 100%);
     border: none;
 }
 

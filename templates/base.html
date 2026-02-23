@@ -10,7 +10,6 @@
     
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
-
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,160 +37,575 @@
     <!-- CSRF Token for AJAX requests -->
     {% csrf_token %}
     <meta name="csrf-token" content="{{ csrf_token }}">
+    
+    <!-- Sidebar-specific styles -->
+    <style>
+        body {
+            background-color: #f8f9fc;
+            overflow-x: hidden;
+        }
+        
+        #wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+        
+        #sidebar-wrapper {
+            min-width: 280px;
+            max-width: 280px;
+            background: linear-gradient(180deg, #22C55E 0%, #22C55E 100%);
+            color: #fff;
+            transition: all 0.3s;
+            min-height: 100vh;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        #sidebar-wrapper::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        #sidebar-wrapper::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        #sidebar-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+        }
+        
+        #sidebar-wrapper .sidebar-header {
+            padding: 1.5rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1rem;
+        }
+        
+        #sidebar-wrapper .sidebar-header .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        #sidebar-wrapper .sidebar-header .brand img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        
+        #sidebar-wrapper .sidebar-header .brand span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        #sidebar-wrapper .user-info {
+            padding: 1rem 1.25rem;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        #sidebar-wrapper .user-info .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+        
+        #sidebar-wrapper .user-info .user-details {
+            flex: 1;
+        }
+        
+        #sidebar-wrapper .user-info .user-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+        }
+        
+        #sidebar-wrapper .user-info .user-role {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        
+        #sidebar-wrapper .nav-menu {
+            padding: 0 0.75rem;
+        }
+        
+        #sidebar-wrapper .nav-item {
+            margin-bottom: 0.25rem;
+        }
+        
+        #sidebar-wrapper .nav-link {
+            color: rgba(255,255,255,0.7);
+            padding: 0.7rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        #sidebar-wrapper .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        #sidebar-wrapper .nav-link.active {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        #sidebar-wrapper .nav-link i {
+            width: 24px;
+            font-size: 1rem;
+            margin-right: 10px;
+            text-align: center;
+        }
+        
+        #sidebar-wrapper .nav-link .badge {
+            margin-left: auto;
+            font-size: 0.7rem;
+        }
+        
+        #sidebar-wrapper .nav-link .arrow {
+            margin-left: auto;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        #sidebar-wrapper .nav-link[aria-expanded="true"] .arrow {
+            transform: rotate(90deg);
+        }
+        
+        #sidebar-wrapper .sub-menu {
+            padding-left: 2.5rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        #sidebar-wrapper .sub-menu .nav-link {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        #sidebar-wrapper .sub-menu .nav-link i {
+            width: 20px;
+            font-size: 0.85rem;
+        }
+        
+        #sidebar-wrapper .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 1rem 0;
+        }
+        
+        #page-content-wrapper {
+            flex: 1;
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            transition: all 0.3s;
+        }
+        
+        /* Mobile header */
+        .mobile-header {
+            display: none;
+            background: #1e2a3a;
+            padding: 0.75rem 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px oklab(0% 0 0 / 0.1);
+        }
+        
+        .mobile-header .brand {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .mobile-header .menu-toggle {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: -280px;
+            }
+            
+            #sidebar-wrapper.show {
+                margin-left: 0;
+            }
+            
+            #page-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mobile-header {
+                display: flex;
+            }
+            
+            main {
+                padding-top: 60px !important;
+            }
+        }
+        
+        /* Main content adjustments */
+        main {
+            transition: all 0.3s;
+            min-height: calc(100vh - 60px);
+            padding: 1.5rem;
+        }
+        
+        /* Footer styling */
+        .footer {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            .footer {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+        
+        /* Notification badge animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .notification-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Logout button styling */
+        .logout-btn {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            padding: 0.7rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .logout-btn i {
+            width: 24px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Mobile Header -->
+    <div class="mobile-header d-md-none">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="{% url 'dashboard:home' %}" class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer" style="max-height: 35px;">
+            <span class="ms-2">Xpert Farmer</span>
+        </a>
+        <div class="dropdown">
+            <button class="menu-toggle" data-bs-toggle="dropdown">
+                <i class="fas fa-user-circle"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'dashboard:profile_settings' %}"><i class="fas fa-user me-2"></i>Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'dashboard:settings' %}"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Navigation for logged-in users -->
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle button -->
-            <a class="navbar-brand" href="{% url 'dashboard:home' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS" class="img-fluid" style="max-height:60px;">
-                Xpert Farmer IMS System
-            </a>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <!-- Brand -->
+            <div class="sidebar-header">
+                <a href="{% url 'dashboard:home' %}" class="brand">
+                    <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS">
+                    <span>Xpert Farmer IMS</span>
+                </a>
+            </div>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- User Info -->
+            <div class="user-info d-flex align-items-center">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <div class="user-name">{{ user.get_full_name|default:user.username }}</div>
+                    <div class="user-role">
+                        {% if user.is_superuser %}
+                            Administrator
+                        {% elif user.is_staff %}
+                            Staff
+                        {% else %}
+                            User
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
             
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.namespace == 'dashboard' %}active{% endif %}" href="{% url 'dashboard:home' %}">
-                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-farm me-1"></i>Farms
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'dashboard:farms_list' %}">All Farms</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:clusters_list' %}">Clusters/Groups</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:farmers_list' %}">Farmers</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-chart-line me-1"></i>Production
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'dashboard:overview' %}">Overview</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:sales_revenue' %}">Sales/Revenue</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:yield_data' %}">Yield Data</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:labor' %}">Labor</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:inputs' %}">Inputs</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:inventory' %}">Inventory</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:reports_main' %}">
-                            <i class="fas fa-file-alt me-1"></i>Reports
-                        </a>
-                    </li>
-                </ul>
+            <!-- Navigation Menu - Organized as requested -->
+            <div class="nav-menu">
+                <!-- Dashboard -->
+                <div class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.namespace == 'dashboard' and request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'dashboard:home' %}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
                 
-                <!-- Right side navbar items -->
-                <ul class="navbar-nav ms-auto">
-                    <!-- Notifications -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown">
+                <!-- Clusters -->
+                <div class="nav-item">
+                    <a class="nav-link {% if 'clusters_list' in request.path %}active{% endif %}" href="{% url 'dashboard:clusters_list' %}">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Clusters</span>
+                    </a>
+                </div>
+                
+                <!-- Farms -->
+                <div class="nav-item">
+                    <a class="nav-link {% if 'farms_list' in request.path %}active{% endif %}" href="{% url 'dashboard:farms_list' %}">
+                        <i class="fas fa-tractor"></i>
+                        <span>Farms</span>
+                    </a>
+                </div>
+                
+                <!-- Farmers -->
+                <div class="nav-item">
+                    <a class="nav-link {% if 'farmers_list' in request.path %}active{% endif %}" href="{% url 'dashboard:farmers_list' %}">
+                        <i class="fas fa-users"></i>
+                        <span>Farmers</span>
+                    </a>
+                </div>
+                
+                <!-- Production with Dropdown -->
+                <div class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#productionMenu" role="button" aria-expanded="false" aria-controls="productionMenu">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Production</span>
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </a>
+                    <div class="collapse sub-menu" id="productionMenu">
+                        <!-- Overview -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'overview' in request.path %}active{% endif %}" href="{% url 'dashboard:overview' %}">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Overview</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Sales/Revenue -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'sales_revenue' in request.path %}active{% endif %}" href="{% url 'dashboard:sales_revenue' %}">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Sales/Revenue</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Yield -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'yield_data' in request.path %}active{% endif %}" href="{% url 'dashboard:yield_data' %}">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Yield</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Labor -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'labor' in request.path %}active{% endif %}" href="{% url 'dashboard:labor' %}">
+                                <i class="fas fa-users-cog"></i>
+                                <span>Labor</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Inputs -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'inputs' in request.path %}active{% endif %}" href="{% url 'dashboard:inputs' %}">
+                                <i class="fas fa-seedling"></i>
+                                <span>Inputs</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Inventory -->
+                        <div class="nav-item">
+                            <a class="nav-link {% if 'inventory' in request.path %}active{% endif %}" href="{% url 'dashboard:inventory' %}">
+                                <i class="fas fa-box"></i>
+                                <span>Inventory</span>
+                                {% if notification_count > 0 %}
+                                <span class="badge bg-danger notification-badge ms-2">{{ notification_count }}</span>
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reports -->
+                <div class="nav-item">
+                    <a class="nav-link {% if 'reports_main' in request.path %}active{% endif %}" href="{% url 'dashboard:reports_main' %}">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Reports</span>
+                    </a>
+                </div>
+                
+                <!-- Divider -->
+                <div class="divider"></div>
+                
+                <!-- Users (Staff only) -->
+                {% if user.is_staff %}
+                <div class="nav-item">
+                    <a class="nav-link {% if 'user_list' in request.path %}active{% endif %}" href="{% url 'dashboard:user_list' %}">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                {% endif %}
+                
+                <!-- Settings -->
+                <div class="nav-item">
+                    <a class="nav-link {% if 'settings' in request.path %}active{% endif %}" href="{% url 'dashboard:settings' %}">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                
+                <!-- Logout -->
+                <div class="nav-item">
+                    <form method="post" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <!-- Desktop top bar with quick actions -->
+            <div class="d-none d-md-block bg-white border-bottom py-2 px-4">
+                <div class="d-flex justify-content-end align-items-center">
+                    <!-- Quick actions dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-plus-circle me-1"></i>Quick Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'dashboard:cluster_create' %}"><i class="fas fa-layer-group me-2"></i>Add Cluster</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dashboard:farm_create' %}"><i class="fas fa-tractor me-2"></i>Add Farm</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dashboard:farmer_create' %}"><i class="fas fa-user-plus me-2"></i>Add Farmer</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'dashboard:sales_create' %}"><i class="fas fa-chart-line me-2"></i>Add Production</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Notifications icon -->
+                    <div class="dropdown ms-3">
+                        <button class="btn btn-sm btn-outline-secondary position-relative" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-bell"></i>
                             {% if notification_count > 0 %}
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 {{ notification_count }}
-                                <span class="visually-hidden">unread notifications</span>
                             </span>
                             {% endif %}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><h6 class="dropdown-header">Notifications</h6></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-info-circle text-info me-2"></i>New farm data available</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Low inventory alert</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line text-success me-2"></i>Monthly report generated</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- User dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle me-1"></i>
-                            {{ user.get_full_name|default:user.username }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><h6 class="dropdown-header">Signed in as {{ user.username }}</h6></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:profile_settings' %}"><i class="fas fa-user me-2"></i>My Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'dashboard:settings' %}"><i class="fas fa-cog me-2"></i>Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            {% if user.is_staff %}
-                            <li><a class="dropdown-item" href="{% url 'dashboard:user_list' %}"><i class="fas fa-users me-2"></i>User Management</a></li>
-                            <li><a class="dropdown-item" href="/admin/" target="_blank"><i class="fas fa-tools me-2"></i>Admin Panel</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            {% endif %}
-                            <li>
-                                <form method="post" action="{% url 'accounts:logout' %}" class="dropdown-item p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-link text-decoration-none text-dark p-2 w-100 text-start">
-                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main content -->
+            <main class="p-4">
+                <!-- Messages/Alerts -->
+                {% if messages %}
+                <div class="container-fluid px-0 mt-0">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 
-                <!-- Search form -->
-                <form class="d-flex ms-3" role="search">
-                    <input class="form-control form-control-sm" type="search" placeholder="Search farms, farmers..." aria-label="Search">
-                    <button class="btn btn-outline-light btn-sm ms-2" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
+                <!-- Page content -->
+                {% block content %}
+                <!-- Content will be injected here by child templates -->
+                {% endblock %}
+            </main>
+            
+            <!-- Footer -->
+            <footer class="footer bg-light border-top py-3 px-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text-muted">© 2024 Xpert Farmer IMS. All rights reserved.</span>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <a href="#" class="text-muted me-3">Privacy Policy</a>
+                            <a href="#" class="text-muted me-3">Terms of Service</a>
+                            <a href="#" class="text-muted">Contact Support</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </nav>
-    {% endif %}
-    
-    <!-- Main content -->
-    <main class="{% if user.is_authenticated %}pt-5 mt-5{% endif %}">
-        <!-- Messages/Alerts -->
-        {% if messages %}
-        <div class="container mt-3">
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        
-        <!-- Page content -->
-        {% block content %}
-        <!-- Content will be injected here by child templates -->
-        {% endblock %}
+    </div>
+    {% else %}
+    <!-- Content for non-authenticated users -->
+    <main>
+        {% block unauth_content %}{% endblock %}
     </main>
-    
-    <!-- Footer -->
-    {% if not user.is_authenticated or not request.path == '/' %}
-    <footer class="footer mt-auto py-3 bg-light border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <span class="text-muted">© 2024 Xpert Farmer IMS. All rights reserved.</span>
-                </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="text-muted me-3">Privacy Policy</a>
-                    <a href="#" class="text-muted me-3">Terms of Service</a>
-                    <a href="#" class="text-muted">Contact Support</a>
-                </div>
-            </div>
-        </div>
-    </footer>
     {% endif %}
     
     <!-- Bootstrap Bundle with Popper -->
@@ -208,8 +622,8 @@
     
     <!-- Initialization script -->
     <script>
-        // Initialize tooltips
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tooltips
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
@@ -232,13 +646,64 @@
             
             // CSRF token setup for AJAX
             var csrftoken = document.querySelector('[name=csrf-token]').content;
-            $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
-                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            if (typeof $ !== 'undefined') {
+                $.ajaxSetup({
+                    beforeSend: function(xhr, settings) {
+                        if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        }
+                    }
+                });
+            }
+            
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar-wrapper');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    const isClickInside = sidebar.contains(event.target) || menuToggle.contains(event.target);
+                    if (!isClickInside && sidebar.classList.contains('show')) {
+                        sidebar.classList.remove('show');
                     }
                 }
             });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('show');
+                }
+            });
+            
+            // Keep dropdown open when clicking inside
+            var dropdowns = document.querySelectorAll('.dropdown-menu');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+            
+            // Auto-expand Production menu if any child is active
+            const productionMenu = document.getElementById('productionMenu');
+            if (productionMenu) {
+                const activeInProduction = productionMenu.querySelector('.nav-link.active');
+                if (activeInProduction) {
+                    const parentToggle = document.querySelector('[href="#productionMenu"]');
+                    if (parentToggle) {
+                        parentToggle.setAttribute('aria-expanded', 'true');
+                        productionMenu.classList.add('show');
+                    }
+                }
+            }
         });
     </script>
 </body>

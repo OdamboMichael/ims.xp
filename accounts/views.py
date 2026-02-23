@@ -212,7 +212,7 @@ def register_view(request):
             
            
             # Create security settings
-            SecuritySettings.objects.create(user=user)
+            #SecuritySettings.objects.create(user=user)
             
             # Create default email templates
             create_default_email_templates()

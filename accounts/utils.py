@@ -96,10 +96,8 @@ def get_security_settings(user):
     """
     Get or create security settings for a user
     """
-    try:
-        return SecuritySettings.objects.get(user=user)
-    except SecuritySettings.DoesNotExist:
-        return SecuritySettings.objects.create(user=user)
+    settings, _ = SecuritySettings.objects.get_or_create(user=user)
+    return settings
 
 def check_login_attempts(user):
     """

@@ -10,15 +10,15 @@
             <div class="d-flex flex-column justify-content-center h-100">
                 <div class="mb-5">
                     <h1 class="display-4 fw-bold mb-3">Xpert Farmer IMS</h1>
-                    <p class="lead">Reset your PIN securely and get back to managing your farms.</p>
+                    <p class="lead">Reset your Password securely and get back to managing your farms.</p>
                 </div>
                 
                 <div class="mt-5">
                     <div class="d-flex align-items-center mb-4">
                         <i class="fas fa-key fa-2x me-3"></i>
                         <div>
-                            <h5>Secure PIN Reset</h5>
-                            <p class="mb-0">Create a new secure PIN for your account</p>
+                            <h5>Secure Password Reset</h5>
+                            <p class="mb-0">Create a new secure Password for your account</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4">
@@ -44,8 +44,8 @@
             <div class="w-100" style="max-width: 400px;">
                 <div class="text-center mb-5">
                     <img src="{% static 'images/logo.png' %}" alt="Xpert Farmer IMS" height="60" class="d-lg-none mb-3">
-                    <h2 class="fw-bold text-primary">Reset your PIN</h2>
-                    <p class="text-muted">Please enter the OTP sent to your email and set a new PIN.</p>
+                    <h2 class="fw-bold text-primary">Reset your Password</h2>
+                    <p class="text-muted">Please enter the OTP sent to your email and set a new Password.</p>
                 </div>
 
                 {% if messages %}
@@ -75,12 +75,12 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mb-4">
-                        <i class="fas fa-redo me-2"></i>Reset PIN
+                        <i class="fas fa-redo me-2"></i>Reset Password
                     </button>
 
                     <div class="text-center">
                         <p class="text-muted">
-                            Remember your PIN? 
+                            Remember your Password? 
                             <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold text-primary">
                                 Back to Login
                             </a>
@@ -102,11 +102,11 @@
 
 <style>
 .bg-primary {
-    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%) !important;
+    background: linear-gradient(135deg, #22C55E 0%, #22C55E 100%) !important;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+    background: linear-gradient(135deg, #22C55E 0%, #22C55E 100%);
     border: none;
 }
 

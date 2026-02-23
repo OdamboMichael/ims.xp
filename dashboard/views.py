@@ -1372,7 +1372,7 @@ def api_yield_chart(request):
             'label': 'Yield by Crop',
             'data': data,
             'backgroundColor': [
-                '#2c5530', '#4a7c59', '#8fb996', '#c8e6c9',
+                '#22C55E', '#22C55E', '#8fb996', '#c8e6c9',
                 '#a5d6a7', '#81c784', '#66bb6a', '#4caf50',
                 '#388e3c', '#2e7d32'
             ],
@@ -1404,7 +1404,7 @@ def api_revenue_chart(request):
         'datasets': [{
             'label': 'Daily Revenue',
             'data': data,
-            'borderColor': '#2c5530',
+            'borderColor': '#22C55E',
             'backgroundColor': 'rgba(44, 85, 48, 0.1)',
             'fill': True,
             'tension': 0.4,
