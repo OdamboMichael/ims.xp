@@ -70,9 +70,7 @@ urlpatterns = [
     
     # Settings
     path('settings/', views.settings_view, name='settings'),
-    path('settings/profile/', views.profile_settings, name='profile_settings'),
-    path('settings/display/', views.display_settings, name='display_settings'),
-    
+   
     # API Endpoints
     path('api/cluster-stats/', views.api_cluster_stats, name='api_cluster_stats'),
     path('api/farmer-stats/', views.api_farmer_stats, name='api_farmer_stats'),

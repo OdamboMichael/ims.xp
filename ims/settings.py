@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'django_user_agents',
+    
     
     # Third party apps
     'crispy_forms',
@@ -44,7 +47,12 @@ INSTALLED_APPS = [
     # Local apps
     'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
+
+
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS="bootstrap5"
+CRISPY_TEMPLATE_PACK="bootstrap"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'users.middleware.SessionTrackingMiddleware',
+
 ]
 
 ROOT_URLCONF = 'ims.urls'

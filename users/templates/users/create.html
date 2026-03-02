@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create New User - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+            <i class="fas fa-user-plus me-2"></i>Create New User
+        </h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="{% url 'users:list' %}" class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Users
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">User Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="createUserForm" action="{% url 'users:create' %}">
+                        {% csrf_token %}
+                        
+                        {{ form|crispy }}
+                        
+                        <!-- Hidden institution field if needed -->
+                        {% if institution %}
+                        <input type="hidden" name="institution" value="{{ institution.id }}">
+                        {% endif %}
+                        
+                        <hr class="my-4">
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'users:list' %}" class="btn btn-secondary">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-user-plus me-1"></i>Create User
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <!-- Role Information Card -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Role Descriptions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6><span class="badge bg-danger">Admin</span></h6>
+                        <p class="small text-muted">Full system access including user management and system settings.</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6><span class="badge bg-warning text-dark">Farm Manager</span></h6>
+                        <p class="small text-muted">Can manage farms, production data, and generate reports.</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6><span class="badge bg-success">Data Analyst</span></h6>
+                        <p class="small text-muted">Can view and analyze data, generate reports, but cannot modify system settings.</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6><span class="badge bg-info">Viewer</span></h6>
+                        <p class="small text-muted">Read-only access to dashboard and reports.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Tips -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Quick Tips
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="small mb-0 list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Assign roles based on the principle of least privilege
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Always verify email addresses before account creation
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Use strong passwords and encourage users to change them on first login
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Review permissions regularly to maintain security
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Consider using two-factor authentication for admin accounts
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Password strength indicator
+        const passwordInput = document.getElementById('id_password1');
+        const passwordHelp = document.createElement('div');
+        passwordHelp.className = 'progress mt-2';
+        passwordHelp.style.height = '5px';
+        passwordHelp.innerHTML = '<div class="progress-bar" id="passwordStrength" style="width: 0%"></div>';
+        
+        if (passwordInput) {
+            passwordInput.parentNode.appendChild(passwordHelp);
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strengthBar = document.getElementById('passwordStrength');
+                
+                let strength = 0;
+                if (password.length >= 8) strength += 25;
+                if (password.match(/[a-z]+/)) strength += 25;
+                if (password.match(/[A-Z]+/)) strength += 25;
+                if (password.match(/[0-9]+/)) strength += 25;
+                
+                strengthBar.style.width = strength + '%';
+                
+                if (strength <= 25) {
+                    strengthBar.className = 'progress-bar bg-danger';
+                } else if (strength <= 50) {
+                    strengthBar.className = 'progress-bar bg-warning';
+                } else if (strength <= 75) {
+                    strengthBar.className = 'progress-bar bg-info';
+                } else {
+                    strengthBar.className = 'progress-bar bg-success';
+                }
+            });
+        }
+        
+        // Password match validation
+        const password1 = document.getElementById('id_password1');
+        const password2 = document.getElementById('id_password2');
+        
+        if (password1 && password2) {
+            password2.addEventListener('input', function() {
+                if (password1.value !== password2.value) {
+                    password2.setCustomValidity('Passwords do not match');
+                    password2.classList.add('is-invalid');
+                } else {
+                    password2.setCustomValidity('');
+                    password2.classList.remove('is-invalid');
+                    password2.classList.add('is-valid');
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

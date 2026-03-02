@@ -15,6 +15,8 @@ urlpatterns = [
     path('', RedirectView.as_view(pattern_name='dashboard:home', permanent=False)),
     path('accounts/', include('accounts.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('users/', include('users.urls')),
+
 ]
 
 # Static and media files in development

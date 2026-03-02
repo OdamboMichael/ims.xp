@@ -25,6 +25,8 @@ from .utils import (
     calculate_gross_margin, calculate_yield_per_acre
 )
 
+from accounts.models import UserProfile  # Import if you have this model
+
 @login_required
 def user_list(request):
     """List all users (admin only)"""
@@ -627,6 +629,10 @@ def production_overview(request):
 @login_required
 def sales_revenue(request):
     """Sales and revenue data"""
+    from django.db.models.functions import ExtractYear, ExtractMonth
+    from django.db.models import Sum, Avg
+    from django.core.paginator import Paginator
+    
     sales_data = ProductionData.objects.select_related('farm').all().order_by('-date_recorded')
     
     # Filter by date range
@@ -642,14 +648,32 @@ def sales_revenue(request):
         avg_price=Avg('price_per_unit')
     ).order_by('-total_revenue')
     
-    # Monthly revenue trend
-    monthly_revenue = sales_data.extra({
-        'month': "EXTRACT(month FROM date_recorded)",
-        'year': "EXTRACT(year FROM date_recorded)"
-    }).values('year', 'month').annotate(
+    # FIXED: Monthly revenue trend - using Extract functions instead of extra()
+    monthly_revenue = sales_data.annotate(
+        year=ExtractYear('date_recorded'),
+        month=ExtractMonth('date_recorded')
+    ).values('year', 'month').annotate(
         monthly_total=Sum('total_revenue'),
         monthly_quantity=Sum('quantity')
     ).order_by('year', 'month')
+    
+    # Alternative method if the above doesn't work (more compatible with all databases)
+    # from collections import defaultdict
+    # monthly_dict = defaultdict(lambda: {'total': 0, 'quantity': 0})
+    # for record in sales_data:
+    #     key = (record.date_recorded.year, record.date_recorded.month)
+    #     monthly_dict[key]['total'] += record.total_revenue or 0
+    #     monthly_dict[key]['quantity'] += record.quantity or 0
+    # 
+    # monthly_revenue = [
+    #     {
+    #         'year': year,
+    #         'month': month,
+    #         'monthly_total': data['total'],
+    #         'monthly_quantity': data['quantity']
+    #     }
+    #     for (year, month), data in sorted(monthly_dict.items())
+    # ]
     
     # Top customers (farms)
     top_customers = sales_data.values('farm__name', 'farm__farmer__name').annotate(
@@ -658,16 +682,24 @@ def sales_revenue(request):
     ).order_by('-total_revenue')[:10]
     
     # Pagination
-    sales_page = paginate_queryset(request, sales_data, per_page=25)
+    from django.core.paginator import Paginator
+    paginator = Paginator(sales_data, 25)
+    page_number = request.GET.get('page')
+    sales_page = paginator.get_page(page_number)
+    
+    # Calculate totals
+    total_revenue = sales_data.aggregate(Sum('total_revenue'))['total_revenue__sum'] or 0
+    total_quantity = sales_data.aggregate(Sum('quantity'))['quantity__sum'] or 0
+    avg_price = sales_data.aggregate(Avg('price_per_unit'))['price_per_unit__avg'] or 0
     
     context = {
         'sales_data': sales_page,
         'sales_by_product': sales_by_product,
         'monthly_revenue': list(monthly_revenue),
         'top_customers': top_customers,
-        'total_revenue': sales_data.aggregate(Sum('total_revenue'))['total_revenue__sum'] or 0,
-        'total_quantity': sales_data.aggregate(Sum('quantity'))['quantity__sum'] or 0,
-        'avg_price': sales_data.aggregate(Avg('price_per_unit'))['price_per_unit__avg'] or 0,
+        'total_revenue': total_revenue,
+        'total_quantity': total_quantity,
+        'avg_price': avg_price,
         'date_range': date_range,
         'start_date': start_date,
         'end_date': end_date,
@@ -839,6 +871,10 @@ def labor_create(request):
 @login_required
 def farm_inputs(request):
     """Farm inputs management"""
+    from django.db.models.functions import ExtractYear, ExtractMonth
+    from django.db.models import Sum, Avg, Count
+    from django.core.paginator import Paginator
+    
     inputs_data = FarmInput.objects.select_related('farm').all().order_by('-date')
     
     # Filter by date range
@@ -865,26 +901,52 @@ def farm_inputs(request):
         total_transactions=Count('id')
     ).order_by('-total_cost')[:10]
     
-    # Monthly input cost trend
-    monthly_input_cost = inputs_data.extra({
-        'month': "EXTRACT(month FROM date)",
-        'year': "EXTRACT(year FROM date)"
-    }).values('year', 'month').annotate(
+    # FIXED: Monthly input cost trend using Extract functions
+    monthly_input_cost = inputs_data.annotate(
+        year=ExtractYear('date'),
+        month=ExtractMonth('date')
+    ).values('year', 'month').annotate(
         monthly_total=Sum('total_cost'),
         monthly_quantity=Sum('quantity')
     ).order_by('year', 'month')
     
+    # ALTERNATIVE: Using Python-side aggregation if the above doesn't work
+    # from collections import defaultdict
+    # monthly_dict = defaultdict(lambda: {'total': 0, 'quantity': 0})
+    # for record in inputs_data:
+    #     key = (record.date.year, record.date.month)
+    #     monthly_dict[key]['total'] += record.total_cost or 0
+    #     monthly_dict[key]['quantity'] += record.quantity or 0
+    # 
+    # monthly_input_cost = [
+    #     {
+    #         'year': year,
+    #         'month': month,
+    #         'monthly_total': data['total'],
+    #         'monthly_quantity': data['quantity']
+    #     }
+    #     for (year, month), data in sorted(monthly_dict.items())
+    # ]
+    
+    # Calculate totals
+    total_cost = inputs_data.aggregate(Sum('total_cost'))['total_cost__sum'] or 0
+    total_quantity = inputs_data.aggregate(Sum('quantity'))['quantity__sum'] or 0
+    avg_unit_cost = inputs_data.aggregate(Avg('unit_cost'))['unit_cost__avg'] or 0
+    
     # Pagination
-    inputs_page = paginate_queryset(request, inputs_data, per_page=25)
+    from django.core.paginator import Paginator
+    paginator = Paginator(inputs_data, 25)
+    page_number = request.GET.get('page')
+    inputs_page = paginator.get_page(page_number)
     
     context = {
         'inputs_data': inputs_page,
         'input_cost_by_category': input_cost_by_category,
         'top_suppliers': top_suppliers,
-        'monthly_input_cost': list(monthly_input_cost),
-        'total_cost': inputs_data.aggregate(Sum('total_cost'))['total_cost__sum'] or 0,
-        'total_quantity': inputs_data.aggregate(Sum('quantity'))['quantity__sum'] or 0,
-        'avg_unit_cost': inputs_data.aggregate(Avg('unit_cost'))['unit_cost__avg'] or 0,
+        'monthly_input_cost': list(monthly_input_cost),  # This was the problematic line
+        'total_cost': total_cost,
+        'total_quantity': total_quantity,
+        'avg_unit_cost': avg_unit_cost,
         'date_range': date_range,
         'start_date': start_date,
         'end_date': end_date,
@@ -1114,93 +1176,126 @@ def report_delete(request, report_id):
     context = {'report': report}
     return render(request, 'dashboard/reports/delete.html', context)
 
+
 @login_required
 def settings_view(request):
-    """Main settings page"""
+    """Single page settings view"""
+    
+    # Get or create user profile
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+    except:
+        profile = None
+    
+    # Get institution if it exists
     try:
         institution = Institution.objects.get(user=request.user)
     except Institution.DoesNotExist:
         institution = None
     
+    # Get or create dashboard settings
     try:
         dashboard_settings = DashboardSetting.objects.get(user=request.user)
     except DashboardSetting.DoesNotExist:
         dashboard_settings = DashboardSetting.objects.create(user=request.user)
     
+    if request.method == 'POST':
+        # Handle form submissions
+        if 'save_account' in request.POST:
+            # Handle account settings save
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            
+            if new_password and new_password == confirm_password:
+                request.user.set_password(new_password)
+                request.user.save()
+                messages.success(request, 'Password updated successfully!')
+            elif new_password:
+                messages.error(request, 'Passwords do not match!')
+            else:
+                messages.success(request, 'Account settings saved successfully!')
+                
+        elif 'save_profile' in request.POST:
+            # Handle profile settings save
+            full_name = request.POST.get('full_name')
+            job_title = request.POST.get('job_title')
+            phone = request.POST.get('phone')
+            
+            # Update user
+            if full_name:
+                # Split full name into first_name and last_name
+                name_parts = full_name.split(' ', 1)
+                request.user.first_name = name_parts[0]
+                if len(name_parts) > 1:
+                    request.user.last_name = name_parts[1]
+                request.user.save()
+            
+            # Update profile
+            if profile:
+                profile.job_title = job_title
+                profile.phone_number = phone
+                profile.save()
+            
+            # Handle profile picture upload
+            if request.FILES.get('profile_picture'):
+                if profile:
+                    profile.profile_picture = request.FILES['profile_picture']
+                    profile.save()
+                else:
+                    # Create profile if it doesn't exist
+                    profile = UserProfile.objects.create(
+                        user=request.user,
+                        job_title=job_title,
+                        phone_number=phone,
+                        profile_picture=request.FILES['profile_picture']
+                    )
+            
+            messages.success(request, 'Profile settings saved successfully!')
+            
+        elif 'save_institution' in request.POST:
+            # Handle institution settings save
+            if institution:
+                institution.name = request.POST.get('institution_name', institution.name)
+                institution.institution_type = request.POST.get('institution_type', institution.institution_type)
+                institution.address = request.POST.get('address', institution.address)
+                institution.description = request.POST.get('description', institution.description)
+                institution.save()
+            else:
+                # Create institution if it doesn't exist
+                institution = Institution.objects.create(
+                    user=request.user,
+                    name=request.POST.get('institution_name', ''),
+                    institution_type=request.POST.get('institution_type', ''),
+                    address=request.POST.get('address', ''),
+                    description=request.POST.get('description', '')
+                )
+            messages.success(request, 'Institution settings saved successfully!')
+            
+        elif 'save_general' in request.POST:
+            # Handle general settings save
+            dashboard_settings.notify_data_updates = request.POST.get('notify_data_updates') == 'on'
+            dashboard_settings.notify_new_reports = request.POST.get('notify_new_reports') == 'on'
+            dashboard_settings.language = request.POST.get('language', 'en-us')
+            dashboard_settings.share_analytics = request.POST.get('share_analytics') == 'on'
+            dashboard_settings.privacy_mode = request.POST.get('privacy_mode') == 'on'
+            dashboard_settings.save()
+            
+            messages.success(request, 'General settings saved successfully!')
+        
+        return redirect('dashboard:settings')
+    
+    # Prepare context with user data
     context = {
+        'user': request.user,
+        'profile': profile,
         'institution': institution,
         'dashboard_settings': dashboard_settings,
+        # Format full name
+        'full_name': f"{request.user.first_name} {request.user.last_name}".strip() or request.user.username,
+        'email': request.user.email,
     }
-    return render(request, 'dashboard/settings/main.html', context)
-
-@login_required
-def profile_settings(request):
-    """Profile settings"""
-    from accounts.models import UserProfile
-    from accounts.forms import ProfileUpdateForm, UserProfileForm
     
-    user = request.user
-    try:
-        profile = UserProfile.objects.get(user=user)
-    except UserProfile.DoesNotExist:
-        profile = None
-    
-    if request.method == 'POST':
-        user_form = ProfileUpdateForm(request.POST, instance=user)
-        profile_form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Your profile has been updated successfully.')
-            return redirect('dashboard:profile_settings')
-    else:
-        user_form = ProfileUpdateForm(instance=user)
-        profile_form = UserProfileForm(instance=profile)
-    
-    context = {
-        'user_form': user_form,
-        'profile_form': profile_form,
-        'profile': profile,
-    }
-    return render(request, 'dashboard/settings/profile.html', context)
-
-@login_required
-def display_settings(request):
-    """Display settings"""
-    try:
-        dashboard_settings = DashboardSetting.objects.get(user=request.user)
-    except DashboardSetting.DoesNotExist:
-        dashboard_settings = DashboardSetting.objects.create(user=request.user)
-    
-    if request.method == 'POST':
-        dashboard_settings.default_date_range = request.POST.get('default_date_range', 'month')
-        dashboard_settings.show_charts = 'show_charts' in request.POST
-        dashboard_settings.show_notifications = 'show_notifications' in request.POST
-        dashboard_settings.items_per_page = int(request.POST.get('items_per_page', 25))
-        dashboard_settings.theme = request.POST.get('theme', 'light')
-        dashboard_settings.save()
-        
-        messages.success(request, 'Display settings updated successfully.')
-        return redirect('dashboard:display_settings')
-    
-    context = {
-        'dashboard_settings': dashboard_settings,
-        'date_range_options': [
-            ('today', 'Today'),
-            ('week', 'This Week'),
-            ('month', 'This Month'),
-            ('quarter', 'This Quarter'),
-            ('year', 'This Year'),
-        ],
-        'theme_options': [
-            ('light', 'Light'),
-            ('dark', 'Dark'),
-            ('auto', 'Auto'),
-        ],
-    }
-    return render(request, 'dashboard/settings/display.html', context)
-
+    return render(request, 'dashboard/settings.html', context)
 @login_required
 def export_farms(request):
     """Export farms data"""

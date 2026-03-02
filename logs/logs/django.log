@@ -8044,3 +8044,2473 @@ INFO 2026-02-23 23:25:23,311 log 14888 7916 "GET /dashboard/ HTTP/1.1" 200 38533
 INFO 2026-02-23 23:26:00,464 log 14888 7916 "GET /dashboard/ HTTP/1.1" 200 38536
 INFO 2026-02-23 23:26:12,494 log 14888 7916 "GET /dashboard/ HTTP/1.1" 200 38533
 INFO 2026-02-23 23:26:24,195 log 14888 7916 "GET /dashboard/ HTTP/1.1" 200 38533
+INFO 2026-02-25 17:53:51,417 autoreload 10412 7880 Watching for file changes with StatReloader
+INFO 2026-02-25 17:58:34,349 log 10412 10536 "GET /dashboard/ HTTP/1.1" 302 0
+INFO 2026-02-25 17:58:35,973 log 10412 10536 "GET /accounts/login/?next=/dashboard/ HTTP/1.1" 200 21285
+INFO 2026-02-25 17:58:36,254 log 10412 10536 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2026-02-25 18:12:22,463 log 10412 14732 "POST /accounts/login/?next=/dashboard/ HTTP/1.1" 200 21952
+INFO 2026-02-25 18:12:44,874 log 10412 14732 "POST /accounts/login/?next=/dashboard/ HTTP/1.1" 302 0
+INFO 2026-02-25 18:12:45,611 log 10412 14732 "GET /dashboard/ HTTP/1.1" 200 38986
+ERROR 2026-02-25 19:13:36,900 log 10412 7004 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/main.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/settings/main.html
+ERROR 2026-02-25 19:13:36,932 log 10412 7004 "GET /dashboard/settings/ HTTP/1.1" 500 92230
+INFO 2026-02-27 14:55:45,070 autoreload 12964 8800 Watching for file changes with StatReloader
+INFO 2026-02-27 15:26:57,004 log 12964 7916 "GET /dashboard/ HTTP/1.1" 302 0
+INFO 2026-02-27 15:26:57,464 log 12964 7916 "GET /accounts/login/?next=/dashboard/ HTTP/1.1" 200 21285
+INFO 2026-02-27 15:27:13,713 log 12964 7916 "POST /accounts/login/?next=/dashboard/ HTTP/1.1" 302 0
+INFO 2026-02-27 15:27:14,182 log 12964 7916 "GET /dashboard/ HTTP/1.1" 200 38986
+ERROR 2026-02-27 15:27:18,884 log 12964 7916 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/main.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/settings/main.html
+ERROR 2026-02-27 15:27:18,891 log 12964 7916 "GET /dashboard/settings/ HTTP/1.1" 500 91925
+ERROR 2026-02-27 15:34:15,809 log 12964 15056 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/main.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/settings/main.html
+ERROR 2026-02-27 15:34:15,812 log 12964 15056 "GET /dashboard/settings/ HTTP/1.1" 500 91925
+INFO 2026-02-27 15:38:46,501 log 12964 9084 "GET /dashboard/reports/ HTTP/1.1" 200 43642
+ERROR 2026-02-27 15:38:51,234 log 12964 9084 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/main.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/settings/main.html
+ERROR 2026-02-27 15:38:51,238 log 12964 9084 "GET /dashboard/settings/ HTTP/1.1" 500 91933
+INFO 2026-02-27 15:43:45,347 autoreload 12964 8800 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 15:43:48,130 autoreload 5040 11332 Watching for file changes with StatReloader
+ERROR 2026-02-27 16:02:11,696 log 5040 10860 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'users'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'users' is not a registered namespace
+ERROR 2026-02-27 16:02:11,732 log 5040 10860 "GET /dashboard/settings/ HTTP/1.1" 500 190304
+ERROR 2026-02-27 16:04:14,262 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'user' is not a registered namespace
+ERROR 2026-02-27 16:04:14,269 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 190282
+ERROR 2026-02-27 16:05:34,939 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users_list' not found. 'users_list' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:05:34,947 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 188986
+ERROR 2026-02-27 16:06:08,726 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'settings_account' not found. 'settings_account' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:06:08,735 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189151
+ERROR 2026-02-27 16:06:21,943 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setting_account' not found. 'setting_account' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:06:21,952 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189125
+ERROR 2026-02-27 16:06:40,380 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setting_general' not found. 'setting_general' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:06:40,387 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189125
+ERROR 2026-02-27 16:06:52,022 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'settings_general' not found. 'settings_general' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:06:52,035 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189151
+ERROR 2026-02-27 16:07:58,016 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setting_general' not found. 'setting_general' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:07:58,027 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189125
+ERROR 2026-02-27 16:08:22,264 log 5040 7032 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1134, in settings_view
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'settings_general' not found. 'settings_general' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:08:22,272 log 5040 7032 "GET /dashboard/settings/ HTTP/1.1" 500 189151
+INFO 2026-02-27 16:38:58,695 autoreload 5040 11332 C:\Users\USER\Downloads\IMS\IMS\dashboard\urls.py changed, reloading.
+INFO 2026-02-27 16:39:02,407 autoreload 13984 17176 Watching for file changes with StatReloader
+INFO 2026-02-27 16:39:54,195 autoreload 13984 17176 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 16:39:57,152 autoreload 11880 7556 Watching for file changes with StatReloader
+INFO 2026-02-27 16:40:30,309 autoreload 11880 7556 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 16:40:32,625 autoreload 11592 14780 Watching for file changes with StatReloader
+INFO 2026-02-27 16:40:37,055 log 11592 4428 "GET /dashboard/settings/ HTTP/1.1" 302 0
+ERROR 2026-02-27 16:40:37,253 log 11592 4428 Internal Server Error: /dashboard/settings/general/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1160, in general_settings
+    return render(request, 'dashboard/settings/general.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_settings' not found. 'profile_settings' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:40:37,264 log 11592 4428 "GET /dashboard/settings/general/ HTTP/1.1" 500 150966
+INFO 2026-02-27 16:41:33,973 log 11592 4428 "GET /dashboard/settings/general/ HTTP/1.1" 200 50886
+INFO 2026-02-27 16:41:40,351 log 11592 4428 "GET /dashboard/users/ HTTP/1.1" 302 0
+INFO 2026-02-27 16:41:40,435 log 11592 4428 "GET /dashboard/ HTTP/1.1" 200 38533
+INFO 2026-02-27 16:41:46,548 log 11592 4428 "GET /dashboard/settings/ HTTP/1.1" 302 0
+INFO 2026-02-27 16:41:46,616 log 11592 4428 "GET /dashboard/settings/general/ HTTP/1.1" 200 50886
+INFO 2026-02-27 16:42:06,549 log 11592 4428 "GET /dashboard/users/ HTTP/1.1" 302 0
+INFO 2026-02-27 16:42:06,610 log 11592 4428 "GET /dashboard/ HTTP/1.1" 200 38533
+INFO 2026-02-27 16:50:24,015 log 11592 3124 "GET /dashboard/settings/ HTTP/1.1" 302 0
+INFO 2026-02-27 16:50:24,109 log 11592 3124 "GET /dashboard/settings/general/ HTTP/1.1" 200 50886
+ERROR 2026-02-27 16:50:29,274 log 11592 3124 Internal Server Error: /dashboard/settings/profile/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1272, in profile_settings
+    return render(request, 'dashboard/settings/profile.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users_list' not found. 'users_list' is not a valid view function or pattern name.
+ERROR 2026-02-27 16:50:29,283 log 11592 3124 "GET /dashboard/settings/profile/ HTTP/1.1" 500 194608
+INFO 2026-02-27 16:56:43,200 autoreload 11592 14780 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 16:56:46,784 autoreload 11620 10032 Watching for file changes with StatReloader
+INFO 2026-02-27 16:57:07,790 autoreload 11620 10032 C:\Users\USER\Downloads\IMS\IMS\dashboard\urls.py changed, reloading.
+INFO 2026-02-27 16:57:09,155 autoreload 13532 10512 Watching for file changes with StatReloader
+INFO 2026-02-27 17:05:34,852 autoreload 13532 10512 C:\Users\USER\Downloads\IMS\IMS\dashboard\urls.py changed, reloading.
+INFO 2026-02-27 17:05:38,687 autoreload 14196 12008 Watching for file changes with StatReloader
+INFO 2026-02-27 17:05:45,159 autoreload 14196 12008 C:\Users\USER\Downloads\IMS\IMS\dashboard\urls.py changed, reloading.
+INFO 2026-02-27 17:05:51,118 autoreload 11104 15916 Watching for file changes with StatReloader
+INFO 2026-02-27 17:06:52,064 autoreload 11104 15916 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 17:06:54,315 autoreload 11108 12292 Watching for file changes with StatReloader
+WARNING 2026-02-27 17:08:41,162 log 11108 5808 Not Found: /dashboard/settings/general/
+WARNING 2026-02-27 17:08:41,164 log 11108 5808 "GET /dashboard/settings/general/ HTTP/1.1" 404 19851
+INFO 2026-02-27 17:13:03,123 autoreload 11108 12292 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 17:13:05,654 autoreload 4472 13436 Watching for file changes with StatReloader
+WARNING 2026-02-27 17:13:09,231 log 4472 16872 Not Found: /dashboard/settings/general/
+WARNING 2026-02-27 17:13:09,232 log 4472 16872 "GET /dashboard/settings/general/ HTTP/1.1" 404 19851
+WARNING 2026-02-27 17:13:12,151 log 4472 16872 Not Found: /dashboard/settings/general/
+WARNING 2026-02-27 17:13:12,153 log 4472 16872 "GET /dashboard/settings/general/ HTTP/1.1" 404 19851
+INFO 2026-02-27 17:13:42,311 autoreload 4472 13436 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 17:13:44,253 autoreload 14440 7124 Watching for file changes with StatReloader
+INFO 2026-02-27 17:13:49,150 autoreload 14440 7124 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-27 17:13:50,966 autoreload 6316 13416 Watching for file changes with StatReloader
+WARNING 2026-02-27 17:13:52,100 log 6316 4864 Not Found: /dashboard/settings/general/
+WARNING 2026-02-27 17:13:52,101 log 6316 4864 "GET /dashboard/settings/general/ HTTP/1.1" 404 19851
+ERROR 2026-02-27 17:20:16,762 log 6316 8968 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1142, in settings_view
+    return render(request, 'dashboard/settings.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'settings_profile' not found. 'settings_profile' is not a valid view function or pattern name.
+ERROR 2026-02-27 17:20:16,776 log 6316 8968 "GET /dashboard/settings/ HTTP/1.1" 500 148290
+INFO 2026-02-27 17:21:30,141 log 6316 8968 "GET /dashboard/settings/ HTTP/1.1" 200 43113
+INFO 2026-02-27 17:21:30,288 log 6316 8968 "GET /static/css/responsive.css HTTP/1.1" 304 0
+INFO 2026-02-27 17:21:30,298 log 6316 7244 "GET /static/images/logo.png HTTP/1.1" 304 0
+INFO 2026-02-27 17:22:18,756 log 6316 8968 "POST /dashboard/settings/ HTTP/1.1" 302 0
+INFO 2026-02-27 17:22:18,806 log 6316 8968 "GET /dashboard/settings/ HTTP/1.1" 200 43551
+INFO 2026-02-27 17:22:25,923 log 6316 8968 "POST /dashboard/settings/ HTTP/1.1" 302 0
+INFO 2026-02-27 17:22:25,970 log 6316 8968 "GET /dashboard/settings/ HTTP/1.1" 200 43555
+INFO 2026-02-28 03:15:58,423 autoreload 16992 15608 Watching for file changes with StatReloader
+INFO 2026-02-28 03:18:12,450 autoreload 16992 15608 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:18:15,345 autoreload 6656 7804 Watching for file changes with StatReloader
+INFO 2026-02-28 03:18:25,359 autoreload 6656 7804 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:18:27,795 autoreload 6764 13688 Watching for file changes with StatReloader
+INFO 2026-02-28 03:19:15,823 autoreload 6764 13688 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:19:17,518 autoreload 15384 7724 Watching for file changes with StatReloader
+INFO 2026-02-28 03:19:37,120 autoreload 15384 7724 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:19:39,497 autoreload 1656 13216 Watching for file changes with StatReloader
+INFO 2026-02-28 03:19:50,628 autoreload 1656 13216 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:19:52,697 autoreload 3000 9540 Watching for file changes with StatReloader
+INFO 2026-02-28 03:20:37,776 autoreload 3000 9540 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:20:39,406 autoreload 9856 12824 Watching for file changes with StatReloader
+INFO 2026-02-28 03:20:42,567 autoreload 9856 12824 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-02-28 03:20:44,074 autoreload 4668 12740 Watching for file changes with StatReloader
+INFO 2026-02-28 03:23:25,983 log 4668 5108 "GET /dashboard/ HTTP/1.1" 200 38403
+INFO 2026-02-28 03:23:26,997 log 4668 5108 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2026-02-28 03:23:27,073 log 4668 12192 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2026-02-28 03:23:27,126 log 4668 5108 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2026-02-28 03:23:27,143 log 4668 4328 "GET /static/js/forms.js HTTP/1.1" 304 0
+INFO 2026-02-28 03:23:27,147 log 4668 3724 "GET /static/js/charts.js HTTP/1.1" 304 0
+INFO 2026-02-28 03:23:27,164 log 4668 9584 "GET /static/js/utils.js HTTP/1.1" 304 0
+ERROR 2026-02-28 03:23:46,692 log 4668 5108 Internal Server Error: /dashboard/settings/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 1238, in settings_view
+    return render(request, 'dashboard/settings.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 590, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 657, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\USER\Downloads\IMS\IMS\dashboard\templates\dashboard\settings.html, Unclosed tag on line 6: 'block'. Looking for one of: endblock.
+ERROR 2026-02-28 03:23:46,710 log 4668 5108 "GET /dashboard/settings/ HTTP/1.1" 500 189935
+INFO 2026-02-28 03:27:14,621 log 4668 2812 "GET /dashboard/settings/ HTTP/1.1" 200 47132
+INFO 2026-03-01 16:42:32,559 autoreload 10108 14764 Watching for file changes with StatReloader
+INFO 2026-03-01 16:45:45,544 log 10108 2244 "GET /dashboard/ HTTP/1.1" 302 0
+INFO 2026-03-01 16:45:46,697 log 10108 2244 "GET /accounts/login/?next=/dashboard/ HTTP/1.1" 200 21155
+INFO 2026-03-01 16:45:57,475 log 10108 2244 "POST /accounts/login/?next=/dashboard/ HTTP/1.1" 302 0
+INFO 2026-03-01 16:45:57,684 log 10108 2244 "GET /dashboard/ HTTP/1.1" 200 38856
+INFO 2026-03-01 16:48:31,436 log 10108 11176 "GET /dashboard/clusters/ HTTP/1.1" 200 29666
+INFO 2026-03-01 16:48:35,164 log 10108 11176 "GET /dashboard/farms/ HTTP/1.1" 200 31989
+INFO 2026-03-01 16:48:40,725 log 10108 11176 "GET /dashboard/reports/ HTTP/1.1" 200 43512
+INFO 2026-03-01 16:49:06,552 log 10108 11176 "GET /dashboard/settings/ HTTP/1.1" 200 47132
+INFO 2026-03-01 17:42:17,670 autoreload 10108 14764 C:\Users\USER\Downloads\IMS\IMS\ims\settings.py changed, reloading.
+INFO 2026-03-02 14:59:00,250 autoreload 18004 13948 Watching for file changes with StatReloader
+ERROR 2026-03-02 14:59:12,132 log 18004 17116 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: users_usersession
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\middleware.py", line 24, in __call__
+    UserSession.objects.update_or_create(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=session_key,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        }
+        ^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 1029, in update_or_create
+    obj, created = self.select_for_update().get_or_create(
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        create_defaults, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 987, in get_or_create
+    return self.get(**kwargs), False
+           ~~~~~~~~^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: users_usersession
+ERROR 2026-03-02 14:59:12,194 log 18004 17116 "GET /dashboard/ HTTP/1.1" 500 149465
+INFO 2026-03-02 15:02:00,373 autoreload 18004 13948 C:\Users\USER\Downloads\IMS\IMS\users\middleware.py changed, reloading.
+INFO 2026-03-02 15:02:03,478 autoreload 10560 18416 Watching for file changes with StatReloader
+INFO 2026-03-02 15:04:12,775 autoreload 10560 18416 C:\Users\USER\Downloads\IMS\IMS\users\models.py changed, reloading.
+INFO 2026-03-02 15:04:15,562 autoreload 3696 11560 Watching for file changes with StatReloader
+INFO 2026-03-02 15:06:11,507 autoreload 8616 10580 Watching for file changes with StatReloader
+INFO 2026-03-02 15:06:14,986 log 8616 11492 "GET /dashboard/ HTTP/1.1" 200 38403
+INFO 2026-03-02 15:06:15,290 log 8616 11492 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2026-03-02 15:15:31,304 log 8616 13376 "GET /dashboard/settings/ HTTP/1.1" 200 47132
+INFO 2026-03-02 15:22:16,118 log 8616 17112 "GET /dashboard/settings/ HTTP/1.1" 200 47437
+INFO 2026-03-02 15:23:58,053 log 8616 17112 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2026-03-02 15:23:58,430 log 8616 17112 "GET /accounts/login/ HTTP/1.1" 200 21555
+INFO 2026-03-02 15:24:09,410 log 8616 17112 "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-03-02 15:24:09,738 log 8616 17112 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4095
+INFO 2026-03-02 15:24:11,065 log 8616 17112 "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO 2026-03-02 15:24:11,083 log 8616 7344 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO 2026-03-02 15:24:11,101 log 8616 14644 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-02 15:24:11,128 log 8616 17112 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16194
+INFO 2026-03-02 15:24:11,150 log 8616 7096 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-02 15:24:11,164 log 8616 17388 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-03-02 15:24:11,346 log 8616 17216 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-03-02 15:24:17,659 log 8616 17112 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4261
+INFO 2026-03-02 15:24:29,638 log 8616 17112 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4275
+INFO 2026-03-02 15:25:51,267 autoreload 6432 10436 Watching for file changes with StatReloader
+INFO 2026-03-02 15:26:11,871 log 6432 18236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+INFO 2026-03-02 15:26:25,342 log 6432 18236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+INFO 2026-03-02 15:26:55,143 log 6432 18236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+INFO 2026-03-02 15:28:00,094 log 6432 18236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+INFO 2026-03-02 15:29:02,383 log 6432 16232 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4095
+INFO 2026-03-02 15:29:03,392 log 6432 16232 "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+WARNING 2026-03-02 15:29:03,425 log 6432 6100 Not Found: /favicon.ico
+INFO 2026-03-02 15:29:03,486 log 6432 10532 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+WARNING 2026-03-02 15:29:03,622 log 6432 6100 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:29:04,019 log 6432 12732 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16194
+INFO 2026-03-02 15:29:04,019 log 6432 8680 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-02 15:29:04,073 log 6432 12732 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-03-02 15:29:04,215 log 6432 9396 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-02 15:29:04,354 log 6432 17616 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+WARNING 2026-03-02 15:29:04,601 log 6432 6100 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:04,656 log 6432 6100 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:04,674 log 6432 17616 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:04,693 log 6432 17616 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:04,725 log 6432 13276 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:04,729 log 6432 13276 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:29:05,964 basehttp 6432 13276 - Broken pipe from ('127.0.0.1', 63760)
+INFO 2026-03-02 15:29:26,728 log 6432 17616 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+WARNING 2026-03-02 15:29:26,931 log 6432 6100 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:26,932 log 6432 6100 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:26,949 log 6432 8888 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:26,976 log 6432 7840 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:26,977 log 6432 7840 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:26,978 log 6432 8888 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:27,027 log 6432 12832 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:27,028 log 6432 12832 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:28,511 log 6432 8888 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:28,512 log 6432 8888 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:29:28,524 log 6432 15380 Not Found: /favicon.ico
+WARNING 2026-03-02 15:29:28,528 log 6432 15380 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:29:29,771 basehttp 6432 15380 - Broken pipe from ('127.0.0.1', 59026)
+INFO 2026-03-02 15:29:29,776 basehttp 6432 12832 - Broken pipe from ('127.0.0.1', 59025)
+INFO 2026-03-02 15:29:29,777 basehttp 6432 7840 - Broken pipe from ('127.0.0.1', 59024)
+INFO 2026-03-02 15:30:00,111 log 6432 11556 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4276
+INFO 2026-03-02 15:32:05,229 autoreload 17832 18012 Watching for file changes with StatReloader
+INFO 2026-03-02 15:32:19,891 log 17832 3276 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-03-02 15:32:21,845 log 17832 3276 "GET /admin/ HTTP/1.1" 200 17865
+INFO 2026-03-02 15:32:25,396 log 17832 3276 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-03-02 15:32:25,828 log 17832 15612 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO 2026-03-02 15:32:25,851 log 17832 3276 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-03-02 15:33:19,371 log 17832 4100 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-03-02 15:33:19,597 log 17832 4100 "GET /admin/ HTTP/1.1" 200 17865
+INFO 2026-03-02 15:33:19,659 log 17832 4100 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+WARNING 2026-03-02 15:33:19,710 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:19,784 log 17832 2744 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:19,788 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:19,794 log 17832 2744 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:19,853 log 17832 10532 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:19,867 log 17832 10532 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:19,875 log 17832 10372 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:19,877 log 17832 10372 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:33:20,045 log 17832 4100 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-03-02 15:33:20,118 log 17832 7584 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+WARNING 2026-03-02 15:33:20,496 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:20,500 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:20,540 log 17832 16576 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:20,542 log 17832 16576 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:33:24,271 basehttp 17832 10532 - Broken pipe from ('127.0.0.1', 49184)
+INFO 2026-03-02 15:33:24,271 basehttp 17832 10372 - Broken pipe from ('127.0.0.1', 49183)
+INFO 2026-03-02 15:33:24,272 basehttp 17832 16576 - Broken pipe from ('127.0.0.1', 50242)
+INFO 2026-03-02 15:33:30,675 log 17832 7584 "GET / HTTP/1.1" 302 0
+INFO 2026-03-02 15:33:30,818 log 17832 7584 "GET /dashboard/ HTTP/1.1" 200 38658
+WARNING 2026-03-02 15:33:31,321 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:31,336 log 17832 2744 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:31,338 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:31,339 log 17832 2744 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:33:31,790 log 17832 4100 "GET /static/css/dashboard.css HTTP/1.1" 200 10029
+INFO 2026-03-02 15:33:31,790 log 17832 7584 "GET /static/css/style.css HTTP/1.1" 200 9943
+INFO 2026-03-02 15:33:31,797 log 17832 13728 "GET /static/css/responsive.css HTTP/1.1" 200 10707
+WARNING 2026-03-02 15:33:31,860 log 17832 11048 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:31,863 log 17832 13288 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:31,864 log 17832 11048 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:31,865 log 17832 13288 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:33:32,612 basehttp 17832 13288 - Broken pipe from ('127.0.0.1', 62845)
+INFO 2026-03-02 15:33:32,613 basehttp 17832 11048 - Broken pipe from ('127.0.0.1', 62844)
+INFO 2026-03-02 15:33:38,573 log 17832 13728 "GET /static/images/logo.png HTTP/1.1" 200 18013
+INFO 2026-03-02 15:33:38,822 log 17832 4100 "GET /static/js/forms.js HTTP/1.1" 200 37414
+INFO 2026-03-02 15:33:38,835 log 17832 7584 "GET /static/js/main.js HTTP/1.1" 200 30208
+INFO 2026-03-02 15:33:38,863 log 17832 13728 "GET /static/js/charts.js HTTP/1.1" 200 33165
+INFO 2026-03-02 15:33:38,980 log 17832 14772 "GET /static/js/utils.js HTTP/1.1" 200 59905
+INFO 2026-03-02 15:33:39,693 log 17832 14772 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+INFO 2026-03-02 15:33:39,693 log 17832 2744 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+INFO 2026-03-02 15:33:39,729 log 17832 11712 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+WARNING 2026-03-02 15:33:39,756 log 17832 2744 Not Found: /favicon.ico
+INFO 2026-03-02 15:33:39,758 log 17832 18372 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+WARNING 2026-03-02 15:33:39,774 log 17832 2744 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:39,798 log 17832 2744 Not Found: /favicon.ico
+INFO 2026-03-02 15:33:39,802 log 17832 18096 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+INFO 2026-03-02 15:33:39,806 log 17832 18372 "GET /static/images/favicon.ico HTTP/1.1" 200 15086
+WARNING 2026-03-02 15:33:39,810 log 17832 2744 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:39,835 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:39,842 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+ERROR 2026-03-02 15:33:42,964 log 17832 14772 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/list.html
+ERROR 2026-03-02 15:33:43,357 log 17832 14772 "GET /users/ HTTP/1.1" 500 100665
+WARNING 2026-03-02 15:33:46,477 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:46,488 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:46,775 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:46,784 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:48,574 log 17832 18096 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:48,579 log 17832 18096 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:33:48,625 log 17832 16576 Not Found: /favicon.ico
+WARNING 2026-03-02 15:33:48,626 log 17832 16576 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:33:52,421 basehttp 17832 16576 - Broken pipe from ('127.0.0.1', 51217)
+ERROR 2026-03-02 15:35:02,006 log 17832 14772 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/list.html
+ERROR 2026-03-02 15:35:02,038 log 17832 14772 "GET /users/ HTTP/1.1" 500 100802
+WARNING 2026-03-02 15:35:02,221 log 17832 13444 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,286 log 17832 13444 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,297 log 17832 17720 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,352 log 17832 10960 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,352 log 17832 17720 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,378 log 17832 4700 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,381 log 17832 10960 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,396 log 17832 17720 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,402 log 17832 4700 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,423 log 17832 3468 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,431 log 17832 17720 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,452 log 17832 8768 Not Found: /favicon.ico
+WARNING 2026-03-02 15:35:02,454 log 17832 3468 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:35:02,467 log 17832 17568 Not Found: /favicon.ico
+INFO 2026-03-02 15:35:02,500 basehttp 17832 4700 - Broken pipe from ('127.0.0.1', 51270)
+WARNING 2026-03-02 15:35:02,522 log 17832 8768 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:35:02,528 basehttp 17832 3468 - Broken pipe from ('127.0.0.1', 51271)
+WARNING 2026-03-02 15:35:02,529 log 17832 17568 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:35:04,527 basehttp 17832 17568 - Broken pipe from ('127.0.0.1', 51273)
+INFO 2026-03-02 15:35:04,528 basehttp 17832 8768 - Broken pipe from ('127.0.0.1', 51272)
+ERROR 2026-03-02 15:37:04,827 log 17832 14772 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/list.html
+ERROR 2026-03-02 15:37:04,850 log 17832 14772 "GET /users/ HTTP/1.1" 500 100802
+WARNING 2026-03-02 15:37:04,944 log 17832 7908 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:04,946 log 17832 7908 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:04,993 log 17832 1196 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,009 log 17832 12932 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,009 log 17832 1196 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,014 log 17832 12932 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,188 log 17832 5456 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,194 log 17832 5456 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,208 log 17832 15348 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,235 log 17832 12932 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,240 log 17832 15348 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,258 log 17832 3460 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,259 log 17832 12932 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,298 log 17832 3460 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:05,360 log 17832 13228 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:05,367 log 17832 13228 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:37:07,829 basehttp 17832 13228 - Broken pipe from ('127.0.0.1', 50551)
+INFO 2026-03-02 15:37:07,829 basehttp 17832 3460 - Broken pipe from ('127.0.0.1', 50550)
+INFO 2026-03-02 15:37:07,829 basehttp 17832 5456 - Broken pipe from ('127.0.0.1', 50548)
+INFO 2026-03-02 15:37:07,829 basehttp 17832 15348 - Broken pipe from ('127.0.0.1', 50549)
+ERROR 2026-03-02 15:37:52,050 log 17832 14772 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/list.html
+ERROR 2026-03-02 15:37:52,074 log 17832 14772 "GET /users/ HTTP/1.1" 500 100802
+WARNING 2026-03-02 15:37:52,161 log 17832 1196 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,164 log 17832 12932 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,178 log 17832 7908 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,192 log 17832 7908 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,182 log 17832 12932 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,180 log 17832 1196 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,327 log 17832 9868 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,339 log 17832 9868 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,343 log 17832 12268 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,369 log 17832 8680 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,376 log 17832 8680 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,374 log 17832 12268 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,502 log 17832 7908 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,508 log 17832 7908 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:37:52,597 log 17832 7832 Not Found: /favicon.ico
+WARNING 2026-03-02 15:37:52,602 log 17832 7832 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:37:53,207 basehttp 17832 12268 - Broken pipe from ('127.0.0.1', 60530)
+INFO 2026-03-02 15:37:53,207 basehttp 17832 9868 - Broken pipe from ('127.0.0.1', 60529)
+INFO 2026-03-02 15:37:53,210 basehttp 17832 7832 - Broken pipe from ('127.0.0.1', 60532)
+INFO 2026-03-02 15:37:53,211 basehttp 17832 8680 - Broken pipe from ('127.0.0.1', 60531)
+INFO 2026-03-02 15:46:07,939 autoreload 3104 7592 Watching for file changes with StatReloader
+ERROR 2026-03-02 15:46:27,987 log 3104 6996 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/users/list.html
+ERROR 2026-03-02 15:46:28,015 log 3104 6996 "GET /users/ HTTP/1.1" 500 101327
+WARNING 2026-03-02 15:46:28,074 log 3104 5016 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,078 log 3104 5016 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,100 log 3104 5016 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,104 log 3104 5016 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,135 log 3104 9332 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,153 log 3104 12172 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,154 log 3104 9332 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,155 log 3104 12172 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,250 log 3104 18188 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,268 log 3104 13228 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,269 log 3104 18188 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,280 log 3104 13228 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,366 log 3104 12172 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,367 log 3104 12172 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:28,392 log 3104 6656 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:28,399 log 3104 6656 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:46:28,407 basehttp 3104 18188 - Broken pipe from ('127.0.0.1', 60477)
+INFO 2026-03-02 15:46:28,407 basehttp 3104 9332 - Broken pipe from ('127.0.0.1', 60475)
+INFO 2026-03-02 15:46:28,407 basehttp 3104 13228 - Broken pipe from ('127.0.0.1', 60478)
+INFO 2026-03-02 15:46:30,427 basehttp 3104 6656 - Broken pipe from ('127.0.0.1', 60479)
+ERROR 2026-03-02 15:46:32,532 log 3104 6996 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/users/list.html
+ERROR 2026-03-02 15:46:32,563 log 3104 6996 "GET /users/ HTTP/1.1" 500 101327
+WARNING 2026-03-02 15:46:32,617 log 3104 12172 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,632 log 3104 5016 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,633 log 3104 12172 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,641 log 3104 5016 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,655 log 3104 5512 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,658 log 3104 5512 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,714 log 3104 11756 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,721 log 3104 11756 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,812 log 3104 2044 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,816 log 3104 2044 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,843 log 3104 16592 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:32,852 log 3104 16592 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:32,995 log 3104 5512 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:33,004 log 3104 5512 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:46:33,046 log 3104 2708 Not Found: /favicon.ico
+WARNING 2026-03-02 15:46:33,049 log 3104 2708 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:46:34,479 basehttp 3104 2708 - Broken pipe from ('127.0.0.1', 60485)
+INFO 2026-03-02 15:46:34,480 basehttp 3104 11756 - Broken pipe from ('127.0.0.1', 60482)
+INFO 2026-03-02 15:46:34,481 basehttp 3104 16592 - Broken pipe from ('127.0.0.1', 60484)
+INFO 2026-03-02 15:46:34,481 basehttp 3104 2044 - Broken pipe from ('127.0.0.1', 60483)
+INFO 2026-03-02 15:51:15,016 autoreload 3104 7592 C:\Users\USER\Downloads\IMS\IMS\users\views.py changed, reloading.
+INFO 2026-03-02 15:51:19,402 autoreload 6216 9116 Watching for file changes with StatReloader
+ERROR 2026-03-02 15:51:23,817 log 6216 4056 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'settings' is not a registered namespace
+ERROR 2026-03-02 15:51:23,922 log 6216 4056 "GET /users/ HTTP/1.1" 500 206042
+WARNING 2026-03-02 15:51:24,025 log 6216 10360 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,041 log 6216 17544 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,045 log 6216 17544 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:24,062 log 6216 15588 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,062 log 6216 10360 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:24,071 log 6216 15588 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:24,188 log 6216 16792 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,203 log 6216 4408 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,204 log 6216 16792 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:24,225 log 6216 10580 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:24,226 log 6216 4408 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:24,227 log 6216 10580 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:25,460 log 6216 10360 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:25,464 log 6216 10360 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 15:51:25,489 log 6216 11896 Not Found: /favicon.ico
+WARNING 2026-03-02 15:51:25,491 log 6216 11896 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 15:51:27,474 basehttp 6216 11896 - Broken pipe from ('127.0.0.1', 65519)
+INFO 2026-03-02 15:51:27,476 basehttp 6216 10580 - Broken pipe from ('127.0.0.1', 65510)
+INFO 2026-03-02 15:51:27,476 basehttp 6216 16792 - Broken pipe from ('127.0.0.1', 65508)
+INFO 2026-03-02 15:51:27,477 basehttp 6216 4408 - Broken pipe from ('127.0.0.1', 65509)
+ERROR 2026-03-02 16:26:19,357 log 6216 13696 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'settings' is not a registered namespace
+ERROR 2026-03-02 16:26:19,419 log 6216 13696 "GET /users/ HTTP/1.1" 500 206054
+WARNING 2026-03-02 16:26:19,804 log 6216 1752 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:19,893 log 6216 1752 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:19,911 log 6216 2640 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:19,997 log 6216 2640 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,000 log 6216 1752 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,028 log 6216 15344 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,071 log 6216 1752 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,072 log 6216 15344 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,107 log 6216 10748 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,109 log 6216 10748 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,126 log 6216 15192 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,128 log 6216 15192 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,160 log 6216 2696 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,178 log 6216 15424 Not Found: /favicon.ico
+WARNING 2026-03-02 16:26:20,179 log 6216 2696 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 16:26:20,188 log 6216 15424 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 16:26:21,111 basehttp 6216 10748 - Broken pipe from ('127.0.0.1', 57619)
+INFO 2026-03-02 16:26:21,113 basehttp 6216 15424 - Broken pipe from ('127.0.0.1', 57622)
+INFO 2026-03-02 16:26:21,114 basehttp 6216 2696 - Broken pipe from ('127.0.0.1', 57621)
+INFO 2026-03-02 16:26:21,114 basehttp 6216 15192 - Broken pipe from ('127.0.0.1', 57620)
+INFO 2026-03-02 16:26:51,469 log 6216 10192 "GET / HTTP/1.1" 302 0
+INFO 2026-03-02 16:26:51,856 log 6216 10192 "GET /dashboard/ HTTP/1.1" 200 38658
+ERROR 2026-03-02 16:26:56,410 log 6216 10192 Internal Server Error: /users/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 88, in user_list
+    return render(request, 'users/list.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'settings' is not a registered namespace
+ERROR 2026-03-02 16:26:56,476 log 6216 10192 "GET /users/ HTTP/1.1" 500 205289
+INFO 2026-03-02 16:28:13,513 log 6216 10192 "GET /users/ HTTP/1.1" 200 54563
+INFO 2026-03-02 16:28:18,163 log 6216 10192 "GET /users/ HTTP/1.1" 200 54563
+INFO 2026-03-02 16:28:20,283 log 6216 10192 "GET /dashboard/settings/ HTTP/1.1" 200 47366
+INFO 2026-03-02 16:28:27,167 log 6216 10192 "GET /dashboard/ HTTP/1.1" 200 38658
+INFO 2026-03-02 16:31:52,719 log 6216 876 "GET /users/ HTTP/1.1" 200 54563
+ERROR 2026-03-02 16:36:36,191 log 6216 15920 Internal Server Error: /users/1/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 192, in user_manage
+    profile_form = UserProfileForm(instance=user.profile)
+                                            ^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+django.contrib.auth.models.User.profile.RelatedObjectDoesNotExist: User has no profile.
+ERROR 2026-03-02 16:36:36,273 log 6216 15920 "GET /users/1/ HTTP/1.1" 500 84317
+ERROR 2026-03-02 16:36:54,462 log 6216 15920 Internal Server Error: /users/create/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 125, in user_create
+    return render(request, 'users/create.html', context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 333, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'settings' is not a registered namespace
+ERROR 2026-03-02 16:36:54,526 log 6216 15920 "GET /users/create/ HTTP/1.1" 500 194242
+INFO 2026-03-02 17:53:47,311 autoreload 18588 5548 Watching for file changes with StatReloader
+INFO 2026-03-02 17:53:55,865 log 18588 17884 "GET /users/create/ HTTP/1.1" 200 35861
+INFO 2026-03-02 17:54:08,671 log 18588 17884 "GET /users/ HTTP/1.1" 200 53530
+ERROR 2026-03-02 18:01:00,505 log 18588 15084 Internal Server Error: /users/1/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 192, in user_manage
+    profile_form = UserProfileForm(instance=user.profile)
+                                            ^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+django.contrib.auth.models.User.profile.RelatedObjectDoesNotExist: User has no profile.
+ERROR 2026-03-02 18:01:00,536 log 18588 15084 "GET /users/1/ HTTP/1.1" 500 84317
+INFO 2026-03-02 18:01:05,152 log 18588 15084 "GET /users/api/1/activity/ HTTP/1.1" 200 18
+ERROR 2026-03-02 18:01:05,410 log 18588 15084 Internal Server Error: /users/1/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\users\views.py", line 192, in user_manage
+    profile_form = UserProfileForm(instance=user.profile)
+                                            ^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+django.contrib.auth.models.User.profile.RelatedObjectDoesNotExist: User has no profile.
+ERROR 2026-03-02 18:01:05,441 log 18588 15084 "GET /users/1/ HTTP/1.1" 500 84317
+INFO 2026-03-02 18:01:19,333 log 18588 15084 "GET /dashboard/clusters/ HTTP/1.1" 200 29927
+INFO 2026-03-02 18:01:21,169 log 18588 15084 "GET /dashboard/ HTTP/1.1" 200 38658
+INFO 2026-03-02 18:01:33,896 log 18588 15084 "GET /dashboard/clusters/ HTTP/1.1" 200 29927
+INFO 2026-03-02 18:01:36,078 log 18588 15084 "GET /dashboard/farms/ HTTP/1.1" 200 32250
+INFO 2026-03-02 18:01:49,954 log 18588 15084 "GET /dashboard/farmers/ HTTP/1.1" 200 30794
+INFO 2026-03-02 18:01:55,077 log 18588 15084 "GET /dashboard/production/overview/ HTTP/1.1" 200 33898
+ERROR 2026-03-02 18:02:04,822 log 18588 15084 Internal Server Error: /dashboard/production/sales/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 668, in sales_revenue
+    'monthly_revenue': list(monthly_revenue),
+                       ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 18:02:04,864 log 18588 15084 "GET /dashboard/production/sales/ HTTP/1.1" 500 145693
+INFO 2026-03-02 18:02:08,803 log 18588 15084 "GET /dashboard/production/yield/ HTTP/1.1" 200 37772
+INFO 2026-03-02 18:02:13,947 log 18588 15084 "GET /dashboard/production/labor/ HTTP/1.1" 200 41716
+ERROR 2026-03-02 18:02:16,383 log 18588 15084 Internal Server Error: /dashboard/production/inputs/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 886, in farm_inputs
+    'monthly_input_cost': list(monthly_input_cost),
+                          ~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 18:02:16,409 log 18588 15084 "GET /dashboard/production/inputs/ HTTP/1.1" 500 145340
+INFO 2026-03-02 18:02:47,536 log 18588 15084 "GET /dashboard/production/labor/ HTTP/1.1" 200 41716
+ERROR 2026-03-02 18:02:51,704 log 18588 15084 Internal Server Error: /dashboard/production/inputs/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 886, in farm_inputs
+    'monthly_input_cost': list(monthly_input_cost),
+                          ~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 18:02:52,302 log 18588 15084 "GET /dashboard/production/inputs/ HTTP/1.1" 500 145340
+INFO 2026-03-02 18:03:01,551 log 18588 15084 "GET /dashboard/production/inventory/ HTTP/1.1" 200 48965
+INFO 2026-03-02 18:03:13,278 log 18588 15084 "GET /dashboard/production/overview/ HTTP/1.1" 200 33898
+ERROR 2026-03-02 18:04:33,518 log 18588 15084 Internal Server Error: /dashboard/production/sales/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 668, in sales_revenue
+    'monthly_revenue': list(monthly_revenue),
+                       ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 18:04:33,581 log 18588 15084 "GET /dashboard/production/sales/ HTTP/1.1" 500 145693
+INFO 2026-03-02 18:26:40,703 log 18588 18024 "GET /users/ HTTP/1.1" 200 53530
+WARNING 2026-03-02 18:26:41,794 log 18588 11132 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:41,795 log 18588 11132 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:42,118 log 18588 18764 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:42,119 log 18588 18764 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:42,148 log 18588 11132 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:42,149 log 18588 11132 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:42,157 log 18588 14288 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:42,158 log 18588 14288 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:42,743 log 18588 19028 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:42,759 log 18588 19028 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:42,761 log 18588 2404 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:42,763 log 18588 2404 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 18:26:43,993 basehttp 18588 18764 - Broken pipe from ('127.0.0.1', 53672)
+INFO 2026-03-02 18:26:43,996 basehttp 18588 19028 - Broken pipe from ('127.0.0.1', 53674)
+INFO 2026-03-02 18:26:43,996 basehttp 18588 2404 - Broken pipe from ('127.0.0.1', 53675)
+WARNING 2026-03-02 18:26:44,046 log 18588 14288 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:44,047 log 18588 14288 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:44,060 log 18588 14644 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:44,064 log 18588 14644 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:44,254 log 18588 14288 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:44,266 log 18588 11132 Not Found: /favicon.ico
+WARNING 2026-03-02 18:26:44,266 log 18588 14288 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:26:44,267 log 18588 11132 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 18:26:45,463 basehttp 18588 14644 - Broken pipe from ('127.0.0.1', 53676)
+ERROR 2026-03-02 18:28:59,665 log 18588 18024 Internal Server Error: /dashboard/production/sales/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 668, in sales_revenue
+    'monthly_revenue': list(monthly_revenue),
+                       ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 18:28:59,692 log 18588 18024 "GET /dashboard/production/sales/ HTTP/1.1" 500 146297
+WARNING 2026-03-02 18:28:59,905 log 18588 3600 Not Found: /favicon.ico
+WARNING 2026-03-02 18:28:59,915 log 18588 17924 Not Found: /favicon.ico
+WARNING 2026-03-02 18:28:59,915 log 18588 3600 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:28:59,918 log 18588 17924 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:29:00,329 log 18588 17924 Not Found: /favicon.ico
+WARNING 2026-03-02 18:29:00,365 log 18588 17924 "GET /favicon.ico HTTP/1.1" 404 3141
+WARNING 2026-03-02 18:29:00,442 log 18588 17656 Not Found: /favicon.ico
+WARNING 2026-03-02 18:29:00,444 log 18588 17656 "GET /favicon.ico HTTP/1.1" 404 3141
+INFO 2026-03-02 18:29:01,975 basehttp 18588 17656 - Broken pipe from ('127.0.0.1', 56692)
+ERROR 2026-03-02 19:48:21,972 log 18588 7808 Internal Server Error: /dashboard/production/sales/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 668, in sales_revenue
+    'monthly_revenue': list(monthly_revenue),
+                       ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 19:48:22,012 log 18588 7808 "GET /dashboard/production/sales/ HTTP/1.1" 500 145693
+INFO 2026-03-02 19:52:27,427 autoreload 18588 5548 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 19:52:32,566 autoreload 6692 17648 Watching for file changes with StatReloader
+INFO 2026-03-02 19:52:40,850 autoreload 6692 17648 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 19:52:43,461 autoreload 876 6908 Watching for file changes with StatReloader
+INFO 2026-03-02 19:56:03,507 autoreload 876 6908 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 19:56:07,471 autoreload 13080 17980 Watching for file changes with StatReloader
+INFO 2026-03-02 20:00:49,532 autoreload 13080 17980 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:00:51,801 autoreload 4108 7344 Watching for file changes with StatReloader
+INFO 2026-03-02 20:01:49,832 autoreload 4108 7344 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:01:53,960 autoreload 18876 18992 Watching for file changes with StatReloader
+INFO 2026-03-02 20:02:16,369 autoreload 18876 18992 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:02:20,151 autoreload 19052 12672 Watching for file changes with StatReloader
+INFO 2026-03-02 20:02:23,440 autoreload 19052 12672 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:02:27,822 autoreload 1632 19452 Watching for file changes with StatReloader
+INFO 2026-03-02 20:15:45,948 autoreload 1632 19452 C:\Users\USER\Downloads\IMS\IMS\dashboard\utils.py changed, reloading.
+INFO 2026-03-02 20:15:48,388 autoreload 17012 15552 Watching for file changes with StatReloader
+INFO 2026-03-02 20:16:27,048 autoreload 17012 15552 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:16:33,763 autoreload 12648 4988 Watching for file changes with StatReloader
+INFO 2026-03-02 20:17:21,895 autoreload 12648 4988 C:\Users\USER\Downloads\IMS\IMS\dashboard\utils.py changed, reloading.
+INFO 2026-03-02 20:17:24,796 autoreload 17532 12340 Watching for file changes with StatReloader
+INFO 2026-03-02 20:17:35,859 autoreload 17532 12340 C:\Users\USER\Downloads\IMS\IMS\dashboard\utils.py changed, reloading.
+INFO 2026-03-02 20:17:39,012 autoreload 8064 13216 Watching for file changes with StatReloader
+INFO 2026-03-02 20:17:45,417 autoreload 8064 13216 C:\Users\USER\Downloads\IMS\IMS\dashboard\utils.py changed, reloading.
+INFO 2026-03-02 20:17:47,522 autoreload 12744 8288 Watching for file changes with StatReloader
+INFO 2026-03-02 20:17:54,033 log 12744 6840 "GET /dashboard/production/sales/ HTTP/1.1" 200 34561
+INFO 2026-03-02 20:18:01,278 log 12744 6840 "GET /dashboard/production/sales/ HTTP/1.1" 200 34561
+INFO 2026-03-02 20:18:08,725 log 12744 6840 "GET /dashboard/production/overview/ HTTP/1.1" 200 33898
+INFO 2026-03-02 20:18:11,319 log 12744 6840 "GET /dashboard/production/sales/ HTTP/1.1" 200 34561
+INFO 2026-03-02 20:18:14,804 log 12744 6840 "GET /dashboard/production/yield/ HTTP/1.1" 200 37772
+INFO 2026-03-02 20:18:18,669 log 12744 6840 "GET /dashboard/production/labor/ HTTP/1.1" 200 41716
+ERROR 2026-03-02 20:18:21,375 log 12744 6840 Internal Server Error: /dashboard/production/inputs/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 916, in farm_inputs
+    'monthly_input_cost': list(monthly_input_cost),
+                          ~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 20:18:21,427 log 12744 6840 "GET /dashboard/production/inputs/ HTTP/1.1" 500 145340
+ERROR 2026-03-02 20:19:06,570 log 12744 6840 Internal Server Error: /dashboard/production/inputs/
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "FROM": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py", line 916, in farm_inputs
+    'monthly_input_cost': list(monthly_input_cost),
+                          ~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 390, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\query.py", line 222, in __iter__
+    for row in compiler.results_iter(
+               ~~~~~~~~~~~~~~~~~~~~~^
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1573, in results_iter
+    results = self.execute_sql(
+        MULTI, chunked_fetch=chunked_fetch, chunk_size=chunk_size
+    )
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\USER\Downloads\IMS\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: near "FROM": syntax error
+ERROR 2026-03-02 20:19:06,617 log 12744 6840 "GET /dashboard/production/inputs/ HTTP/1.1" 500 145340
+INFO 2026-03-02 20:20:15,296 autoreload 12744 8288 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:20:18,972 autoreload 16124 2100 Watching for file changes with StatReloader
+INFO 2026-03-02 20:20:38,750 log 16124 19092 "GET /dashboard/production/inventory/ HTTP/1.1" 200 48965
+INFO 2026-03-02 20:24:01,094 autoreload 16124 2100 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:24:04,554 autoreload 18140 18208 Watching for file changes with StatReloader
+INFO 2026-03-02 20:25:20,137 autoreload 18140 18208 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.
+INFO 2026-03-02 20:25:22,223 autoreload 16044 288 Watching for file changes with StatReloader
+INFO 2026-03-02 20:25:34,565 log 16044 16648 "GET /dashboard/production/inputs/ HTTP/1.1" 200 46424
+INFO 2026-03-02 20:27:30,300 log 16044 19160 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2026-03-02 20:27:30,505 log 16044 19160 "GET /accounts/login/ HTTP/1.1" 200 21555
+INFO 2026-03-02 20:27:46,816 log 16044 19160 "POST /accounts/login/ HTTP/1.1" 200 21574
+INFO 2026-03-02 20:28:05,014 log 16044 19160 "POST /accounts/login/ HTTP/1.1" 200 21574
+INFO 2026-03-02 20:28:33,427 log 16044 19160 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-03-02 20:28:33,639 log 16044 19160 "GET /dashboard/ HTTP/1.1" 200 38856
+INFO 2026-03-02 20:29:08,994 autoreload 16044 288 C:\Users\USER\Downloads\IMS\IMS\dashboard\views.py changed, reloading.

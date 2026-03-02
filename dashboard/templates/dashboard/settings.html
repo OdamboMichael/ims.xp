@@ -1,0 +1,366 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Settings - Xpert Farmer IMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+            <i class="fas fa-cog me-2"></i>Settings
+        </h1>
+        <div class="text-muted">
+            Manage your account, profile, and application settings.
+        </div>
+    </div>
+
+    <!-- Settings Form -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-lg-6">
+                <!-- Account Information Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-user-circle text-primary me-2"></i>
+                            Account Information
+                        </h5>
+                        <p class="text-muted small mt-1 mb-0">
+                            Update your email address and change your password here.
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email Address</label>
+                            <input type="email" class="form-control" value="{{ user.email|default:'Not set' }}" readonly disabled>
+                            <small class="text-muted">Contact support to change email</small>
+                        </div>
+                        
+                        <!-- Current Password (placeholder - actual password not shown) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Current Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" value="••••••••" readonly>
+                                <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('password-section').style.display='block'; this.style.display='none';">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Password change section (hidden by default) -->
+                        <div id="password-section" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">New Password</label>
+                                <input type="password" class="form-control" name="new_password" placeholder="Enter new password">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Confirm New Password</label>
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm new password">
+                            </div>
+                            
+                            <!-- Password strength indicator -->
+                            <div class="progress mb-2" style="height: 5px;">
+                                <div class="progress-bar bg-success" id="password-strength" style="width: 0%"></div>
+                            </div>
+                            <small class="text-muted" id="password-strength-text"></small>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                            <button type="submit" name="save_account" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Management Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-user text-success me-2"></i>
+                            Profile Management
+                        </h5>
+                        <p class="text-muted small mt-1 mb-0">
+                            Edit your personal information and profile picture.
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Profile Picture -->
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="position-relative d-inline-block">
+                                    {% if profile and profile.profile_picture %}
+                                        <img src="{{ profile.profile_picture.url }}" alt="Profile" class="rounded-circle img-thumbnail" style="width: 120px; height: 120px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
+                                            <i class="fas fa-user fa-3x text-secondary"></i>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="document.getElementById('profilePic').click();">
+                                        <i class="fas fa-upload me-1"></i>Upload
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeProfilePic()">
+                                        <i class="fas fa-trash me-1"></i>Remove
+                                    </button>
+                                    <input type="file" name="profile_picture" id="profilePic" class="d-none" accept="image/*" onchange="previewImage(this)">
+                                </div>
+                            </div>
+                            
+                            <!-- Profile Fields -->
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Full Name</label>
+                                    <input type="text" class="form-control" name="full_name" value="{{ full_name }}" placeholder="Your full name">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Job Title</label>
+                                    <input type="text" class="form-control" name="job_title" value="{% if profile %}{{ profile.job_title }}{% endif %}" placeholder="Your job title">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" value="{% if profile %}{{ profile.phone_number }}{% endif %}" placeholder="Your phone number">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2 mt-3">
+                            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                            <button type="submit" name="save_profile" class="btn btn-success">
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-lg-6">
+                <!-- Institution Details Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-building text-warning me-2"></i>
+                            Institution Details
+                        </h5>
+                        <p class="text-muted small mt-1 mb-0">
+                            Manage information about your institution.
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Institution Name</label>
+                            <input type="text" class="form-control" name="institution_name" value="{% if institution %}{{ institution.name }}{% endif %}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Institution Type</label>
+                            <select class="form-select" name="institution_type">
+                                <option value="ngo" {% if institution and institution.institution_type == 'ngo' %}selected{% endif %}>NGO</option>
+                                <option value="government" {% if institution and institution.institution_type == 'government' %}selected{% endif %}>Government</option>
+                                <option value="private" {% if institution and institution.institution_type == 'private' %}selected{% endif %}>Private Company</option>
+                                <option value="educational" {% if institution and institution.institution_type == 'educational' %}selected{% endif %}>Educational</option>
+                                <option value="research" {% if institution and institution.institution_type == 'research' %}selected{% endif %}>Research Institute</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Location / Address</label>
+                            <input type="text" class="form-control" name="address" value="{% if institution %}{{ institution.address }}{% endif %}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Brief Description</label>
+                            <textarea class="form-control" name="description" rows="3">{% if institution %}{{ institution.description }}{% endif %}</textarea>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                            <button type="submit" name="save_institution" class="btn btn-warning">
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Settings Card -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-sliders-h text-info me-2"></i>
+                            General Settings
+                        </h5>
+                        <p class="text-muted small mt-1 mb-0">
+                            Configure notifications, privacy, and language preferences.
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Notifications -->
+                        <h6 class="fw-semibold mb-3">Notifications</h6>
+                        
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="notify_data_updates" id="dataUpdates" {% if dashboard_settings.notify_data_updates %}checked{% endif %}>
+                                <label class="form-check-label" for="dataUpdates">
+                                    <span class="fw-medium">Data Updates</span><br>
+                                    <small class="text-muted">Receive an email when new farm data is available.</small>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="notify_new_reports" id="newReports" {% if dashboard_settings.notify_new_reports %}checked{% endif %}>
+                                <label class="form-check-label" for="newReports">
+                                    <span class="fw-medium">New Reports</span><br>
+                                    <small class="text-muted">Get notified when new reports are generated.</small>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Language -->
+                        <h6 class="fw-semibold mb-3">Language & Region</h6>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Language</label>
+                            <select class="form-select" name="language">
+                                <option value="en-us" {% if dashboard_settings.language == 'en-us' %}selected{% endif %}>English (United States)</option>
+                                <option value="en-gb" {% if dashboard_settings.language == 'en-gb' %}selected{% endif %}>English (United Kingdom)</option>
+                                <option value="es" {% if dashboard_settings.language == 'es' %}selected{% endif %}>Español (Spanish)</option>
+                                <option value="fr" {% if dashboard_settings.language == 'fr' %}selected{% endif %}>Français (French)</option>
+                                <option value="sw" {% if dashboard_settings.language == 'sw' %}selected{% endif %}>Kiswahili (Swahili)</option>
+                                <option value="pt" {% if dashboard_settings.language == 'pt' %}selected{% endif %}>Português (Portuguese)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Privacy Settings -->
+                        <h6 class="fw-semibold mb-3 mt-4">Privacy</h6>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="share_analytics" id="shareAnalytics" {% if dashboard_settings.share_analytics %}checked{% endif %}>
+                                <label class="form-check-label" for="shareAnalytics">
+                                    Share anonymous usage data to help improve the platform
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="privacy_mode" id="privacyMode" {% if dashboard_settings.privacy_mode %}checked{% endif %}>
+                                <label class="form-check-label" for="privacyMode">
+                                    Privacy mode (hide sensitive data on dashboard)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                            <button type="submit" name="save_general" class="btn btn-info text-white">
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Add JavaScript for interactivity -->
+{% block extra_js %}
+<script>
+    // Preview uploaded image
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Update the profile picture preview
+                const profileImg = document.querySelector('.rounded-circle.img-thumbnail');
+                if (profileImg) {
+                    profileImg.src = e.target.result;
+                } else {
+                    // Create new image element if none exists
+                    const container = document.querySelector('.position-relative.d-inline-block');
+                    container.innerHTML = `<img src="${e.target.result}" alt="Profile" class="rounded-circle img-thumbnail" style="width: 120px; height: 120px; object-fit: cover;">`;
+                }
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    // Remove profile picture
+    function removeProfilePic() {
+        if (confirm('Remove profile picture?')) {
+            // You might want to add AJAX call to remove the picture
+            const container = document.querySelector('.position-relative.d-inline-block');
+            container.innerHTML = `<div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
+                <i class="fas fa-user fa-3x text-secondary"></i>
+            </div>`;
+        }
+    }
+    
+    // Password strength checker
+    document.querySelector('input[name="new_password"]')?.addEventListener('input', function() {
+        const password = this.value;
+        const strengthBar = document.getElementById('password-strength');
+        const strengthText = document.getElementById('password-strength-text');
+        
+        let strength = 0;
+        if (password.length >= 8) strength += 25;
+        if (password.match(/[a-z]+/)) strength += 25;
+        if (password.match(/[A-Z]+/)) strength += 25;
+        if (password.match(/[0-9]+/)) strength += 25;
+        
+        strengthBar.style.width = strength + '%';
+        
+        if (strength <= 25) {
+            strengthBar.className = 'progress-bar bg-danger';
+            strengthText.textContent = 'Weak password';
+        } else if (strength <= 50) {
+            strengthBar.className = 'progress-bar bg-warning';
+            strengthText.textContent = 'Fair password';
+        } else if (strength <= 75) {
+            strengthBar.className = 'progress-bar bg-info';
+            strengthText.textContent = 'Good password';
+        } else {
+            strengthBar.className = 'progress-bar bg-success';
+            strengthText.textContent = 'Strong password';
+        }
+    });
+    
+    // Password match validation
+    const newPass = document.querySelector('input[name="new_password"]');
+    const confirmPass = document.querySelector('input[name="confirm_password"]');
+    
+    if (newPass && confirmPass) {
+        confirmPass.addEventListener('input', function() {
+            if (newPass.value && confirmPass.value) {
+                if (newPass.value !== confirmPass.value) {
+                    confirmPass.setCustomValidity('Passwords do not match');
+                    confirmPass.classList.add('is-invalid');
+                } else {
+                    confirmPass.setCustomValidity('');
+                    confirmPass.classList.remove('is-invalid');
+                    confirmPass.classList.add('is-valid');
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}
+{% endblock %}

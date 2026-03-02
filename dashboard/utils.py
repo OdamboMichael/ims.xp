@@ -221,6 +221,7 @@ def get_date_range(range_type):
     
     return start_date, end_date
 
+
 def get_chart_data(chart_type, start_date, end_date, filters=None):
     """Generate data for charts"""
     if filters is None:
